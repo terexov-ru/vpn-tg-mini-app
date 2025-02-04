@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function Navigation() {
   return (
-    <nav className="flex justify-around bg-gray-900 p-4 fixed bottom-0 w-full">
+    <nav className="flex justify-around bg-gray-900 p-2 fixed bottom-0 w-full max-w-[800px]">
       <Link
         href="/"
         className="flex flex-col items-center text-gray-400 hover:text-white"

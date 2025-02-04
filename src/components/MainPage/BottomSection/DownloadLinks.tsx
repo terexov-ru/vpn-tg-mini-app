@@ -26,12 +26,12 @@ export default function DownloadLinks() {
   }, []);
 
   return (
-    <div className="overflow-x-auto no-scrollbar w-full px-4">
+    <div className="overflow-x-auto no-scrollbar w-full">
       <div className="flex gap-4 min-w-max">
         {apps.map((app) => (
           <a
             key={app.name}
-            href={app.link}
+            href="#!"
             className={`flex flex-col items-start justify-between w-32 h-28 rounded-xl p-4 font-semibold transition ${
               platform === app.name
                 ? "bg-purple-600 text-white"
