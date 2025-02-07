@@ -21,22 +21,26 @@ export default function Navigation() {
         return (
           <Link key={href} href={href} className="relative">
             <div
-              className={`flex items-center justify-center rounded-full bg-[#111] ${
+              className={`flex items-center justify-center rounded-full bg-[#111] transition-all duration-300 ${
                 isActive
-                  ? "px-3 py-1 text-white shadow-lg"
+                  ? "px-3 py-1 text-white shadow-lg w-auto"
                   : "w-12 h-12 "
               }`}
             >
               <div
-                className={`w-10 h-10 flex items-center justify-center rounded-full ${
+                className={`w-10 h-10 flex items-center justify-center rounded-full transition-all duration-300 ${
                   isActive ? "bg-[#6F40DC] shadow-lg" : "bg-transparent"
                 }`}
               >
                 <Icon className="w-6 h-6 text-white" />
               </div>
-              {isActive && (
-                <span className="text-sm font-normal ml-2">{label}</span>
-              )}
+              <span
+                className={`text-sm font-normal ml-2 transition-all duration-300 ${
+                  isActive ? "opacity-100 w-auto" : "opacity-0 w-0 hidden"
+                }`}
+              >
+                {label}
+              </span>
             </div>
           </Link>
         );
