@@ -1,29 +1,46 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { Home, ShieldCheck, Settings } from "lucide-react";
 
 export default function Navigation() {
+  const pathname = usePathname();
+
+  const menuItems = [
+    { href: "/", icon: Home, label: "Главная" },
+    { href: "/payment", icon: ShieldCheck, label: "Оплата" },
+    { href: "/support", icon: Settings, label: "Поддержка" },
+  ];
+
   return (
-    <nav className="flex justify-around bg-gray-900 p-2 fixed bottom-0 w-full max-w-[800px]">
-      <Link
-        href="/"
-        className="flex flex-col items-center text-gray-400 hover:text-white"
-      >
-        <span>🏠</span>
-        <span>Home</span>
-      </Link>
-      <Link
-        href="/payment"
-        className="flex flex-col items-center text-gray-400 hover:text-white"
-      >
-        <span>💳</span>
-        <span>Payment</span>
-      </Link>
-      <Link
-        href="/support"
-        className="flex flex-col items-center text-gray-400 hover:text-white"
-      >
-        <span>❓</span>
-        <span>Support</span>
-      </Link>
+    <nav className="flex justify-center items-center gap-4 p-3 fixed bottom-0 w-full max-w-[800px] mx-auto">
+      {menuItems.map(({ href, icon: Icon, label }) => {
+        const isActive = pathname === href;
+
+        return (
+          <Link key={href} href={href} className="relative">
+            <div
+              className={`flex items-center justify-center rounded-full bg-[#111] ${
+                isActive
+                  ? "px-3 py-1 text-white shadow-lg"
+                  : "w-12 h-12 "
+              }`}
+            >
+              <div
+                className={`w-10 h-10 flex items-center justify-center rounded-full ${
+                  isActive ? "bg-[#6F40DC] shadow-lg" : "bg-transparent"
+                }`}
+              >
+                <Icon className="w-6 h-6 text-white" />
+              </div>
+              {isActive && (
+                <span className="text-sm font-normal ml-2">{label}</span>
+              )}
+            </div>
+          </Link>
+        );
+      })}
     </nav>
   );
 }

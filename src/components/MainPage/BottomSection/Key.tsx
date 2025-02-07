@@ -5,13 +5,13 @@ import InfoCard from "@/components/InfoCard";
 export default function Key() {
   return (
     <InfoCard
-      title="VPN Key"
+      title="VPN-ключ"
       description={
-        <p className="text-purple-400 font-medium text-lg tracking-wide">
+        <p className="text-purple-400">
           XYZ-123-ABCD
         </p>
       }
-      buttonText="Copy"
+      buttonText="Скопировать"
     />
   );
 }

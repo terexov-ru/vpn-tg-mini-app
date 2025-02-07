@@ -1,16 +1,16 @@
-import InfoCard from "@/components/InfoCard";
+import ActiveInfoCard from "@/components/ActiveInfoCard";
 
 export default function Subscription() {
   return (
-    <InfoCard
-      title="Subscription"
+    <ActiveInfoCard
+      title="Подписка"
       description={
         <>
-          Expires on:{" "}
-          <span className="text-white font-medium">March 15, 2025</span>
+          Истекает:{" "}
+          <span className="text-white font-medium">15 марта 2025</span>
         </>
       }
-      buttonText="Renew"
+      buttonText="Продлить"
     />
   );
 }

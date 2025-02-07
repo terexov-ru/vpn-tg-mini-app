@@ -1,9 +1,9 @@
 import { Download, Upload, Signal } from "lucide-react";
 
 const stats = [
-  { icon: Download, value: "16.7 Mb/s", label: "Download" },
-  { icon: Upload, value: "24.2 Mb/s", label: "Upload" },
-  { icon: Signal, value: "16 ms", label: "Ping" },
+  { icon: Download, value: "16.7 Mb/s", label: "Загрузка" },
+  { icon: Upload, value: "24.2 Mb/s", label: "Отдача" },
+  { icon: Signal, value: "16 ms", label: "Пинг" },
 ];
 
 function StatCard({
@@ -21,7 +21,7 @@ function StatCard({
         <Icon className="w-4 h-4 text-gray-400" />
       </div>
       <div>
-        <span className="text-base/5 tracking-wide block font-normal">{value}</span>
+        <span className="text-[#C8C8C9] tracking-wide block font-normal leading-4">{value}</span>
         <span className="text-sm text-gray-400">{label}</span>
       </div>
     </div>

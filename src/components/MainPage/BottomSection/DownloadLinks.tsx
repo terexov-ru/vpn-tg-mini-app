@@ -34,7 +34,7 @@ export default function DownloadLinks() {
             href="#!"
             className={`flex flex-col items-start justify-between w-32 h-28 rounded-xl p-4 font-semibold transition ${
               platform === app.name
-                ? "bg-purple-600 text-white"
+                ? "bg-[#6F40DC] text-white"
                 : "bg-gray-900 text-gray-400"
             }`}
           >
