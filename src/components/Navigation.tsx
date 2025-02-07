@@ -14,7 +14,7 @@ export default function Navigation() {
   ];
 
   return (
-    <nav className="flex justify-center items-center gap-4 p-3 fixed bottom-0 w-full max-w-[800px] mx-auto">
+    <nav className="flex justify-center items-center gap-4 p-3 fixed bottom-0 w-full max-w-[500px] mx-auto">
       {menuItems.map(({ href, icon: Icon, label }) => {
         const isActive = pathname === href;
 

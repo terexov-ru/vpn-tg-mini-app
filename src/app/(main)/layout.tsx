@@ -1,6 +1,6 @@
 import Navgation from "@/components/Navigation";
 import Image from "next/image";
-import earthImage from "../../../public/main_background.jpg";
+import earthImage from "../../../public/main_background.png";
 
 export default function RootLayout({
   children,
@@ -9,7 +9,7 @@ export default function RootLayout({
 }>) {
   return (
     <div className="relative min-h-screen flex flex-col bg-gradient-to-b from-[#291b4c] via-black to-black">
-      <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 w-full max-w-4xl bg-none">
+      <div className="absolute bottom-[30%] left-1/2 transform -translate-x-1/2 w-full max-w-4xl bg-none">
         <Image
           src={earthImage}
           alt="Earth Background"
