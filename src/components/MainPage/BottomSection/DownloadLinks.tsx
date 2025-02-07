@@ -1,7 +1,5 @@
 "use client";
 
-import { div } from "framer-motion/client";
-
 const apps = [
   { name: "iOS", link: "/download/ios", icon: "🍏" },
   { name: "Android", link: "/download/android", icon: "🤖" },
@@ -18,10 +16,15 @@ export default function DownloadLinks() {
             <a
               key={app.name}
               href={app.link}
-              className="flex flex-col items-start justify-between w-32 h-28 rounded-xl p-4 font-semibold transition bg-gray-900 text-gray-400"
+              className="flex flex-col items-start justify-between w-40 h-[150px] rounded-2xl p-4 font-semibold transition bg-gray-900 text-white relative shadow-md hover:shadow-lg"
             >
-              <span className="text-3xl">{app.icon}</span>
-              <span className="text-sm">{app.name}</span>
+              <div className="flex items-center gap-2 justify-between">
+                <span className="text-2xl">{app.icon}</span>
+              </div>
+              <div className="mt-auto">
+                <span className="text-xs text-gray-300">ОС</span>
+                <span className="block text-lg font-bold">{app.name}</span>
+              </div>
             </a>
           ))}
         </div>
