@@ -5,7 +5,7 @@ import "./globals.css";
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"], 
+  weight: ["300", "400", "500", "600", "700"],
   display: "swap",
 });
 
@@ -21,8 +21,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} antialiased flex-col items-center justify-center md:flex`}>
-        <main className="min-h-screen h-full max-w-[500px] w-full">{children}</main>
+      <body
+        className={`${inter.variable} antialiased flex-col items-center justify-center md:flex min-h-screen max-h-screen overflow-hidden`}
+      >
+        <main className="h-full max-w-[500px] w-full max-h-full">{children}</main>
       </body>
     </html>
   );

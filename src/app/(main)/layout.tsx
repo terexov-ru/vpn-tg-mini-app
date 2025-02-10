@@ -8,21 +8,23 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div className="relative min-h-screen flex flex-col bg-gradient-to-b from-[#291b4c] via-black to-black">
+    <div className="relative min-h-screen flex flex-col bg-gradient-to-b from-[#291b4c] via-black to-black max-h-full h-full">
       <div className="absolute bottom-[30%] left-1/2 transform -translate-x-1/2 w-full max-w-4xl bg-none">
         <Image
           src={earthImage}
           alt="Earth Background"
           width={800}
           height={400}
-          objectFit="contain" 
+          objectFit="contain"
           className="opacity-60"
           priority
         />
       </div>
 
-      <div className="relative z-10 flex flex-col min-h-screen">
-        {children}
+      <div className="z-10">
+        <div className="overflow-y-auto max-h-[calc(100vh-74px)]">
+          {children}
+        </div>
         <Navgation />
       </div>
     </div>
