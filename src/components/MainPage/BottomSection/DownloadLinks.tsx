@@ -9,8 +9,8 @@ const apps = [
 
 export default function DownloadLinks() {
   return (
-    <div className="px-4 max-w-full overflow-x-auto">
-      <div className="overflow-x-auto w-full">
+    <div className="px-4 max-w-full overflow-x-auto no-scrollbar">
+      <div className="overflow-x-auto w-full no-scrollbar">
         <div className="flex gap-4 min-w-max overflow-x-auto no-scrollbar">
           {apps.map((app) => (
             <a

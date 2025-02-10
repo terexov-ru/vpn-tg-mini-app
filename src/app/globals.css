@@ -47,3 +47,12 @@ body {
     font-size: 16px;
   }
 }
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;  /* для IE и Edge */
+  scrollbar-width: none;  /* для Firefox */
+}
