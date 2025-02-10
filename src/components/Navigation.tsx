@@ -29,26 +29,26 @@ export default function Navigation() {
           <Link
             key={href}
             href={href}
-            className="flex items-center justify-center rounded-full bg-[#111] shadow-lg text-white h-[50px]"
+            className="flex items-center justify-center rounded-full bg-[#111] shadow-lg text-white h-[56px]"
           >
             <motion.div
-              className="inline-flex items-center overflow-hidden px-2 py-1 h-full"
-              initial={isFirstLoad ? { maxWidth: isActive ? 130 : 50 } : {}}
+              className="inline-flex items-center overflow-hidden px-2 py-1 h-full w-full"
+              initial={isFirstLoad ? { maxWidth: isActive ? 130 : 56 } : {}}
               animate={{
-                maxWidth: isActive ? 130 : 50,
+                maxWidth: isActive ? 130 : 56,
               }}
               transition={
                 isFirstLoad
                   ? { duration: 0 }
-                  : { duration: 0.3, ease: "easeInOut" }
+                  : { duration: 0.2, ease: "easeInOut" }
               }
             >
               <div
-                className={`w-8 h-8 min-w-8 min-h-8 flex items-center justify-center rounded-full ${
+                className={`w-10 h-10 min-w-10 min-h-10 flex items-center justify-center rounded-full ${
                   isActive ? "bg-[#6F40DC] shadow-lg" : "bg-transparent"
                 }`}
               >
-                <Icon className="w-5 h-5" />
+                <Icon className="w-6 h-6" />
               </div>
 
               <motion.span
@@ -67,11 +67,7 @@ export default function Navigation() {
                   width: isActive ? "auto" : 0,
                   marginLeft: isActive ? "8px" : 0,
                 }}
-                transition={
-                  isFirstLoad
-                    ? { duration: 0 }
-                    : { duration: 0.3, delay: isActive ? 0.1 : 0 }
-                }
+                transition={isFirstLoad ? { duration: 0 } : { duration: 0.2 }}
               >
                 {label}
               </motion.span>

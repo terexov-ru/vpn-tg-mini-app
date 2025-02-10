@@ -53,6 +53,12 @@ body {
 }
 
 .no-scrollbar {
-  -ms-overflow-style: none;  /* для IE и Edge */
-  scrollbar-width: none;  /* для Firefox */
+  -ms-overflow-style: none; /* для IE и Edge */
+  scrollbar-width: none; /* для Firefox */
+}
+
+html,
+body {
+  height: 100%;
+  overflow: hidden;
 }
