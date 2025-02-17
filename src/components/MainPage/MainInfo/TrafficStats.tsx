@@ -30,7 +30,7 @@ function StatCard({
 
 export default function TrafficStats() {
   return (
-    <div className="grid grid-cols-3 gap-4 mt-6 w-full">
+    <div className="grid grid-cols-3 gap-4 w-full">
       {stats.map((stat, index) => (
         <StatCard
           key={index}

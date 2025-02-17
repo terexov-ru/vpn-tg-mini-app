@@ -23,7 +23,7 @@ export default function RootLayout({
 
       <div className="z-10">
         <div className="overflow-y-auto min-h-0 h-[calc(100dvh-80px)]">
-          {children}
+          <div className="pt-5">{children}</div>
         </div>
         <Navgation />
       </div>
