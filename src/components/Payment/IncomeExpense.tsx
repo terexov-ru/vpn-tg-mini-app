@@ -19,10 +19,12 @@ export function IncomeExpense() {
         </div>
         <table className="w-full border-collapse">
           <thead>
-            <tr className="border-b border-[#ebedf027] text-left">
-              <th className="py-3 px-3 text-sm font-normal">Месяц</th>
-              <th className="py-3 px-3 text-sm font-normal">Рефералы</th>
-              <th className="py-3 px-3 text-sm font-normal">Заработок</th>
+            <tr className="border-b border-[#ebedf027]">
+              <th className="py-3 px-3 text-sm font-normal text-left">Месяц</th>
+              <th className="py-3 px-3 text-sm font-normal text-center">
+                Рефералы
+              </th>
+              <th className="py-3 px-3 text-sm font-normal text-right">Заработок</th>
             </tr>
           </thead>
           <tbody>
@@ -33,9 +35,9 @@ export function IncomeExpense() {
                   index !== data.length - 1 ? "border-b border-[#ebedf027]" : ""
                 }`}
               >
-                <td className="py-3 px-3">{item.month}</td>
-                <td className="py-3 px-3">{item.refer}</td>
-                <td className="py-3 px-3">{item.earn}</td>
+                <td className="py-3 px-3 text-left">{item.month}</td>
+                <td className="py-3 px-3 text-center">{item.refer}</td>
+                <td className="py-3 px-3 text-right">{item.earn}</td>
               </tr>
             ))}
           </tbody>
