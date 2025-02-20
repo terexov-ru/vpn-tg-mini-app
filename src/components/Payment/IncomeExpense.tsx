@@ -10,7 +10,7 @@ const data = [
 export function IncomeExpense() {
   return (
     <section className="px-4">
-      <div className="bg-[#171819] mb-4 pt-5 rounded-2xl w-full">
+      <div className="bg-[#171819] mb-4 pt-5 rounded-2xl w-full text-white">
         <div className="px-3 pb-3 flex items-center justify-between">
           <h2 className="text-xl font-semibold">Бонусы</h2>
           <h2 className="text-sm text-gray-400 font-normal">

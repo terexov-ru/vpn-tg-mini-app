@@ -27,7 +27,7 @@ const plans = [
 
 export function SubscriptionPlans() {
   return (
-    <section className="mx-4 mb-5 overflow-x-auto flex gap-[10px] no-scrollbar">
+    <section className="mx-4 mb-5 overflow-x-auto flex gap-[10px] no-scrollbar text-white">
       {plans.map((plan, index) => (
         <div
           key={index}

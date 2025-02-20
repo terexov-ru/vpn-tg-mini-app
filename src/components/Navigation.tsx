@@ -20,8 +20,8 @@ export default function Navigation() {
     { href: "/support", icon: Settings, label: "Поддержка" },
   ];
   return (
-    <nav className="fixed bottom-0 w-full max-w-[500px] pb-[18px] backdrop-blur-md pt-4">
-      <div className="h-[64px] flex justify-center items-center gap-1">
+    <nav className="fixed bottom-0 w-full max-w-[500px] pb-2 bg-[rgb(255_255_255_/1%)] pt-2">
+      <div className="h-[54px] flex justify-center items-center gap-2">
         {menuItems.map(({ href, icon: Icon, label }) => {
           const isActive = pathname === href;
 
@@ -29,12 +29,12 @@ export default function Navigation() {
             <Link
               key={href}
               href={href}
-              className="flex items-center justify-center rounded-full bg-[#111] text-white h-[60px] min-w-[60px]"
+              className="flex items-center justify-center rounded-full bg-[#111] text-white h-[50px] min-w-[50px]"
             >
               <motion.div
                 className="flex items-center overflow-hidden h-full w-full"
-                initial={isFirstLoad ? { maxWidth: isActive ? 180 : 60 } : {}}
-                animate={{ maxWidth: isActive ? 180 : 60 }}
+                initial={isFirstLoad ? { maxWidth: isActive ? 180 : 50 } : {}}
+                animate={{ maxWidth: isActive ? 180 : 50 }}
                 transition={
                   isFirstLoad
                     ? { duration: 0 }
@@ -44,27 +44,27 @@ export default function Navigation() {
                 <div
                   className={`flex items-center justify-center rounded-[60px] ${
                     isActive
-                      ? "bg-[#6F40DC] shadow-lg w-14 h-14 min-w-14 min-h-14 ml-1"
-                      : "bg-transparent w-[60px] h-[60px] min-w-[60px] min-h-[60px]"
+                      ? "bg-[#6F40DC] shadow-lg w-[40px] h-[40px] min-w-[40px] min-h-[40px] ml-1"
+                      : "bg-transparent w-[50px] h-[50px] min-w-[50px] min-h-[50px]"
                   }`}
                 >
-                  <Icon className="w-7 h-7" />
+                  <Icon className="w-6 h-6" />
                 </div>
 
                 <motion.div
-                  className="text-[18px] font-medium inline-flex whitespace-nowrap overflow-hidden"
+                  className="text-[16px] font-medium inline-flex whitespace-nowrap overflow-hidden"
                   initial={{
                     opacity: isActive ? 1 : 0,
                     width: isActive ? "auto" : 0,
                     marginLeft: isActive ? "8px" : 0,
-                    paddingRight: isActive ? "24px" : 0,
+                    paddingRight: isActive ? "20px" : 0,
                     display: isActive ? "inline-flex" : "none",
                   }}
                   animate={{
                     opacity: isActive ? 1 : 0,
                     width: isActive ? "auto" : 0,
                     marginLeft: isActive ? "8px" : 0,
-                    paddingRight: isActive ? "24px" : 0,
+                    paddingRight: isActive ? "20px" : 0,
                     display: isActive ? "inline-flex" : "none",
                   }}
                   transition={isFirstLoad ? { duration: 0 } : { duration: 0.3 }}

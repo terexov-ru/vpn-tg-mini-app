@@ -7,11 +7,11 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const gradient = 'bg-gradient-to-b from-[#291b4c] via-black to-black"';
+  const gradient = 'bg-gradient-to-b from-[#291b4c] via-black to-black';
 
   return (
-    <main className={`h-full w-full max-w-[500px] ${gradient}`}>
-      <div className="overflow-y-auto min-h-0 h h-[calc(100dvh-98px)]">{children}</div>
+    <main className={`h-full w-full max-w-[500px] text-whiteП ${gradient}`}>
+      <div className="overflow-y-auto min-h-0 h h-[calc(100dvh-70px)]">{children}</div>
       <Navgation />
     </main>
   );

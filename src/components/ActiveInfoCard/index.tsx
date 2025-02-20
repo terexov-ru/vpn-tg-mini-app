@@ -10,7 +10,7 @@ export default function ActiveInfoCard({
   return (
     <div className="relative bg-accent px-5 py-6 rounded-[16px] flex items-center justify-between w-full">
       <div>
-        <h2 className="text-lg font-medium tracking-wide mb-1">{title}</h2>
+        <h2 className="text-lg/5 font-medium tracking-wide mb-1 text-white">{title}</h2>
         <div className="text-sm font-normal text-gray-300">{description}</div>
       </div>
       {buttonText && (
