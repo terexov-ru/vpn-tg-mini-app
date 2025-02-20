@@ -20,7 +20,7 @@ export default function Navigation() {
     { href: "/support", icon: Settings, label: "Поддержка" },
   ];
   return (
-    <nav className="fixed bottom-0 w-full max-w-[500px] pb-6 bg-black">
+    <nav className="fixed bottom-0 w-full max-w-[500px] pb-[18px] backdrop-blur-md pt-4">
       <div className="h-[64px] flex justify-center items-center gap-1">
         {menuItems.map(({ href, icon: Icon, label }) => {
           const isActive = pathname === href;

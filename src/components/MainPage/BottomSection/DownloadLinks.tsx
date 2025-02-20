@@ -9,7 +9,7 @@ const apps = [
 
 export default function DownloadLinks() {
   return (
-    <div className="mt-4 ml-4 overflow-x-auto flex gap-[10px] no-scrollbar">
+    <div className="mt-4 mx-4 overflow-x-auto flex gap-[10px] no-scrollbar">
       {apps.map((app) => (
         <a
           key={app.name}

@@ -11,7 +11,7 @@ export default function RootLayout({
 
   return (
     <main className={`h-full w-full max-w-[500px] ${gradient}`}>
-      <div className="overflow-y-auto min-h-0 h h-[calc(100dvh-104px)]">{children}</div>
+      <div className="overflow-y-auto min-h-0 h h-[calc(100dvh-98px)]">{children}</div>
       <Navgation />
     </main>
   );
