@@ -1,28 +1,50 @@
+"use client";
+
 import { Download, Upload, Signal } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 const stats = [
-  { icon: Download, value: "16.7 Mb/s", label: "Загрузка" },
-  { icon: Upload, value: "24.2 Mb/s", label: "Отдача" },
-  { icon: Signal, value: "16 ms", label: "Пинг" },
+  { icon: Download, value: "00:18:56", label: "Время визита" },
+  { icon: Upload, value: "2392032", label: "Кол-во юзеров" },
+  { icon: Signal, label: "Пригласить друга", button: "Пригласить", buttonLink: "!" },
 ];
 
 function StatCard({
   Icon,
   value,
   label,
+  button,
+  buttonLink,
 }: {
   Icon: any;
-  value: string;
+  value?: string;
   label: string;
+  button?: string;
+  buttonLink?: string;
 }) {
+  const { push } = useRouter();
   return (
-    <div className="relative bg-white/5 backdrop-blur-lg p-4 rounded-2xl flex flex-col items-start justify-end text-white shadow-md w-full h-28">
+    <div className="relative bg-white/5 backdrop-blur-md p-3 rounded-2xl w-full h-[118px] flex flex-col justify-end">
       <div className="absolute top-2 right-2 bg-white/10 p-2 rounded-full">
         <Icon className="w-4 h-4 text-gray-400" />
       </div>
       <div>
-        <span className="text-[#C8C8C9] tracking-wide block font-normal leading-4">{value}</span>
-        <span className="text-sm text-gray-400">{label}</span>
+        {label && (
+          <div className="text-xs/4 font-normal text-gray-400 mb-2 overflow-hidden truncate">{label}</div>
+        )}
+        {value && (
+          <div className="text-[#C8C8C9] font-medium text-base/[19px]">
+            {value}
+          </div>
+        )}
+        {button && buttonLink && (
+          <button
+            className="rounded-[40px] bg-accent flex items-center justify-center px-3 py-[5px] text-xs font-normal max-w-full"
+            onClick={() => push(buttonLink)}
+          >
+            {button}
+          </button>
+        )}
       </div>
     </div>
   );
@@ -30,13 +52,15 @@ function StatCard({
 
 export default function TrafficStats() {
   return (
-    <div className="grid grid-cols-3 gap-4 w-full">
+    <div className="grid grid-cols-3 gap-3 w-full">
       {stats.map((stat, index) => (
         <StatCard
           key={index}
           Icon={stat.icon}
           value={stat.value}
           label={stat.label}
+          button={stat.button}
+          buttonLink={stat.buttonLink}
         />
       ))}
     </div>

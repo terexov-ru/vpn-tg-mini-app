@@ -8,13 +8,13 @@ export default function ActiveInfoCard({
   buttonText?: string;
 }) {
   return (
-    <div className="relative bg-[#6F40DC] backdrop-blur-lg px-4 py-5 rounded-xl flex items-center justify-between text-white shadow-lg w-full">
+    <div className="relative bg-accent px-5 py-6 rounded-[16px] flex items-center justify-between w-full">
       <div>
-        <h2 className="text-base font-semibold tracking-wide">{title}</h2>
-        <div className="text-sm text-gray-300">{description}</div>
+        <h2 className="text-lg font-medium tracking-wide mb-1">{title}</h2>
+        <div className="text-sm font-normal text-gray-300">{description}</div>
       </div>
       {buttonText && (
-        <button className="bg-white px-5 py-2 rounded-full text-black text-sm font-normal hover:bg-gray-200 transition shadow-md">
+        <button className="bg-white px-[18px] py-3 rounded-[60px] text-black text-sm font-medium hover:bg-gray-200 transition shadow-md">
           {buttonText}
         </button>
       )}

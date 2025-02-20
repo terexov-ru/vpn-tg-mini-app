@@ -1,38 +1,18 @@
 "use client";
+
 import Navgation from "@/components/Navigation";
-import Image from "next/image";
-import earthImage from "../../../public/main_background.png";
-import { usePathname } from "next/navigation";
 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const pathname = usePathname();
-  const isHome = pathname === "/";
-  return (
-    <div className="relative min-h-screen flex flex-col bg-gradient-to-b from-[#291b4c] via-black to-black max-h-full h-full">
-      <div className="absolute bottom-[30%] left-1/2 transform -translate-x-1/2 w-full max-w-4xl bg-none">
-        <Image
-          src={earthImage}
-          alt="Earth Background"
-          width={800}
-          height={400}
-          objectFit="contain"
-          style={{
-            opacity: isHome ? 0.6 : 0,
-          }}
-          priority
-        />
-      </div>
+  const gradient = 'bg-gradient-to-b from-[#291b4c] via-black to-black"';
 
-      <div className="z-10">
-        <div className="overflow-y-auto min-h-0 h-[calc(100dvh-80px)]">
-          <div className="pt-5">{children}</div>
-        </div>
-        <Navgation />
-      </div>
-    </div>
+  return (
+    <main className={`h-full w-full max-w-[500px] ${gradient}`}>
+      <div className="overflow-y-auto min-h-0 h h-[calc(100dvh-104px)]">{children}</div>
+      <Navgation />
+    </main>
   );
 }

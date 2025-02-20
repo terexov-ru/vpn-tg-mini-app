@@ -19,62 +19,63 @@ export default function Navigation() {
     { href: "/payment", icon: ShieldCheck, label: "Оплата" },
     { href: "/support", icon: Settings, label: "Поддержка" },
   ];
-
   return (
-    <nav className="flex justify-center items-center gap-4 p-3 fixed bottom-0 w-full max-w-[500px] mx-auto bg-black">
-      {menuItems.map(({ href, icon: Icon, label }) => {
-        const isActive = pathname === href;
+    <nav className="fixed bottom-0 w-full max-w-[500px] pb-6 bg-black">
+      <div className="h-[64px] flex justify-center items-center gap-1">
+        {menuItems.map(({ href, icon: Icon, label }) => {
+          const isActive = pathname === href;
 
-        return (
-          <Link
-            key={href}
-            href={href}
-            className="flex items-center justify-center rounded-full bg-[#111] shadow-lg text-white h-[56px]"
-          >
-            <motion.div
-              className="inline-flex items-center overflow-hidden px-2 py-1 h-full w-full"
-              initial={isFirstLoad ? { maxWidth: isActive ? 130 : 56 } : {}}
-              animate={{
-                maxWidth: isActive ? 130 : 56,
-              }}
-              transition={
-                isFirstLoad
-                  ? { duration: 0 }
-                  : { duration: 0.2, ease: "easeInOut" }
-              }
+          return (
+            <Link
+              key={href}
+              href={href}
+              className="flex items-center justify-center rounded-full bg-[#111] text-white h-[60px] min-w-[60px]"
             >
-              <div
-                className={`w-10 h-10 min-w-10 min-h-10 flex items-center justify-center rounded-full ${
-                  isActive ? "bg-[#6F40DC] shadow-lg" : "bg-transparent"
-                }`}
-              >
-                <Icon className="w-6 h-6" />
-              </div>
-
-              <motion.span
-                className="text-xs font-normal whitespace-nowrap"
-                initial={
+              <motion.div
+                className="flex items-center overflow-hidden h-full w-full"
+                initial={isFirstLoad ? { maxWidth: isActive ? 180 : 60 } : {}}
+                animate={{ maxWidth: isActive ? 180 : 60 }}
+                transition={
                   isFirstLoad
-                    ? {
-                        opacity: isActive ? 1 : 0,
-                        width: isActive ? "auto" : 0,
-                        marginLeft: isActive ? "8px" : 0,
-                      }
-                    : {}
+                    ? { duration: 0 }
+                    : { duration: 0.3, ease: "easeInOut" }
                 }
-                animate={{
-                  opacity: isActive ? 1 : 0,
-                  width: isActive ? "auto" : 0,
-                  marginLeft: isActive ? "8px" : 0,
-                }}
-                transition={isFirstLoad ? { duration: 0 } : { duration: 0.2 }}
               >
-                {label}
-              </motion.span>
-            </motion.div>
-          </Link>
-        );
-      })}
+                <div
+                  className={`flex items-center justify-center rounded-[60px] ${
+                    isActive
+                      ? "bg-[#6F40DC] shadow-lg w-14 h-14 min-w-14 min-h-14 ml-1"
+                      : "bg-transparent w-[60px] h-[60px] min-w-[60px] min-h-[60px]"
+                  }`}
+                >
+                  <Icon className="w-7 h-7" />
+                </div>
+
+                <motion.div
+                  className="text-[18px] font-medium inline-flex whitespace-nowrap overflow-hidden"
+                  initial={{
+                    opacity: isActive ? 1 : 0,
+                    width: isActive ? "auto" : 0,
+                    marginLeft: isActive ? "8px" : 0,
+                    paddingRight: isActive ? "24px" : 0,
+                    display: isActive ? "inline-flex" : "none",
+                  }}
+                  animate={{
+                    opacity: isActive ? 1 : 0,
+                    width: isActive ? "auto" : 0,
+                    marginLeft: isActive ? "8px" : 0,
+                    paddingRight: isActive ? "24px" : 0,
+                    display: isActive ? "inline-flex" : "none",
+                  }}
+                  transition={isFirstLoad ? { duration: 0 } : { duration: 0.3 }}
+                >
+                  {label}
+                </motion.div>
+              </motion.div>
+            </Link>
+          );
+        })}
+      </div>
     </nav>
   );
 }

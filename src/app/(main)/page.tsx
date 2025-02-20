@@ -4,12 +4,14 @@ import Header from "@/components/header";
 
 export default function HomePage() {
   return (
-    <div className="text-white flex flex-col justify-between h-full">
-      <Header text="Главная"/>
-      <div>
-        <MainInfo />
-      </div>
-      <BottomSection />
-    </div>
+    <>
+      <section className="flex flex-col gap-[90px] justify-between h-full">
+        <div>
+          <Header text="Главная" className="mb-8" />
+          <MainInfo />
+        </div>
+        <BottomSection />
+      </section>
+    </>
   );
 }

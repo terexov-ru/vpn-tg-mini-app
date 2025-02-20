@@ -22,9 +22,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.variable} antialiased flex-col items-center justify-center md:flex min-h-screen max-h-screen overflow-hidden`}
+        className={`${inter.variable} antialiased min-h-screen max-h-screen overflow-hidden`}
       >
-        <main className="h-full max-w-[500px] w-full max-h-full">{children}</main>
+        {children}
       </body>
     </html>
   );

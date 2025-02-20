@@ -7,7 +7,7 @@ export default function Key() {
     <div className="px-4 w-full">
       <InfoCard
         title="VPN-ключ"
-        description={<div className="text-purple-400">XYZ-123-ABCD</div>}
+        description={'YZ-123-ABCD'}
         buttonText="Скопировать"
       />
     </div>

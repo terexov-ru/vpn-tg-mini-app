@@ -9,26 +9,22 @@ const apps = [
 
 export default function DownloadLinks() {
   return (
-    <div className="px-4 max-w-full overflow-x-auto no-scrollbar">
-      <div className="overflow-x-auto w-full no-scrollbar">
-        <div className="flex gap-4 min-w-max overflow-x-auto no-scrollbar">
-          {apps.map((app) => (
-            <a
-              key={app.name}
-              href={app.link}
-              className="flex flex-col items-start justify-between w-40 h-[150px] rounded-2xl p-4 font-semibold transition bg-gray-900 text-white relative shadow-md hover:shadow-lg"
-            >
-              <div className="flex items-center gap-2 justify-between">
-                <span className="text-2xl">{app.icon}</span>
-              </div>
-              <div className="mt-auto">
-                <span className="text-xs text-gray-300">ОС</span>
-                <span className="block text-lg font-bold">{app.name}</span>
-              </div>
-            </a>
-          ))}
-        </div>
-      </div>
+    <div className="mt-4 ml-4 overflow-x-auto flex gap-[10px] no-scrollbar">
+      {apps.map((app) => (
+        <a
+          key={app.name}
+          href={app.link}
+          className="bg-white/5 backdrop-blur-md p-4 rounded-[16px] min-w-[160px] h-[156px] flex-grow flex-[1_0_0%] flex flex-col justify-between"
+        >
+          <div className="flex items-center gap-2 justify-between">
+            <span className="text-2xl">{app.icon}</span>
+          </div>
+          <div className="mt-auto">
+            <div className="text-sm font-normal text-gray-300 mb-1">ОС</div>
+            <div className="text-lg font-medium">{app.name}</div>
+          </div>
+        </a>
+      ))}
     </div>
   );
 }

@@ -7,7 +7,7 @@ export default function Subscription() {
       description={
         <>
           Истекает:{" "}
-          <span className="text-white font-medium">15 марта 2025</span>
+          <span className="text-white">15 марта 2025</span>
         </>
       }
       buttonText="Продлить"

@@ -1,6 +1,12 @@
-const Header = ({ text }: { text: string }) => {
+const Header = ({ text, className }: { text: string; className?: string }) => {
   return (
-    <h1 className="font-medium text-2xl/[28px] mb-5 text-center">{text}</h1>
+    <h1
+      className={`font-medium text-2xl/[28px] mb-5 text-center pt-5 ${
+        className || ""
+      }`.trim()}
+    >
+      {text}
+    </h1>
   );
 };
 
