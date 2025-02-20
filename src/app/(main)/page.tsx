@@ -5,7 +5,7 @@ import Header from "@/components/header";
 export default function HomePage() {
   return (
     <>
-      <section className="flex flex-col gap-[90px] justify-between h-full">
+      <section className="flex flex-col gap-[160px] justify-between h-full">
         <div>
           <Header text="Главная" className="mb-8" />
           <MainInfo />
