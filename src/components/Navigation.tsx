@@ -38,7 +38,7 @@ export default function Navigation() {
                 transition={
                   isFirstLoad
                     ? { duration: 0 }
-                    : { duration: 0.3, ease: "easeInOut" }
+                    : { duration: 0.3, ease: [0.4, 0, 0.2, 1] }
                 }
               >
                 <div
@@ -63,7 +63,11 @@ export default function Navigation() {
                     width: isActive ? "auto" : 0,
                     display: isActive ? "inline-flex" : "none",
                   }}
-                  transition={isFirstLoad ? { duration: 0 } : { duration: 0.3 }}
+                  transition={
+                    isFirstLoad
+                      ? { duration: 0 }
+                      : { duration: 0.3, ease: [0.4, 0, 0.2, 1] }
+                  }
                 >
                   <div className="pr-3 pl-2">{label}</div>
                 </motion.div>
