@@ -2,7 +2,7 @@ import { div } from "framer-motion/client";
 
 export function TicketSystem() {
   return (
-    <div className="px-4 pt-3">
+    <div className="px-4 my-5">
       <h2 className="text-xl font-semibold text-white mb-4">
         Запрос в поддержку
       </h2>
