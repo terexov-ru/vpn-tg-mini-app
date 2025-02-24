@@ -56,20 +56,16 @@ export default function Navigation() {
                   initial={{
                     opacity: isActive ? 1 : 0,
                     width: isActive ? "auto" : 0,
-                    marginLeft: isActive ? "8px" : 0,
-                    paddingRight: isActive ? "20px" : 0,
                     display: isActive ? "inline-flex" : "none",
                   }}
                   animate={{
                     opacity: isActive ? 1 : 0,
                     width: isActive ? "auto" : 0,
-                    marginLeft: isActive ? "8px" : 0,
-                    paddingRight: isActive ? "20px" : 0,
                     display: isActive ? "inline-flex" : "none",
                   }}
                   transition={isFirstLoad ? { duration: 0 } : { duration: 0.3 }}
                 >
-                  {label}
+                  <div className="pr-3 pl-2">{label}</div>
                 </motion.div>
               </motion.div>
             </Link>
