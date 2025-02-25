@@ -1,22 +1,28 @@
 "use client";
 
 import { Download, Upload, Signal } from "lucide-react";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 
 const stats = [
-  { icon: Download, value: "00:18:56", label: "Время визита" },
-  { icon: Upload, value: "2392032", label: "Кол-во юзеров" },
-  { icon: Signal, label: "Позвать друга", button: "Позвать", buttonLink: "#!" },
+  { icon: "/time.svg", value: "00:18:56", label: "Время визита" },
+  { icon: "/people.svg", value: "2392032", label: "Кол-во юзеров" },
+  {
+    icon: "/invite.svg",
+    label: "Позвать друга",
+    button: "Позвать",
+    buttonLink: "#!",
+  },
 ];
 
 function StatCard({
-  Icon,
+  icon,
   value,
   label,
   button,
   buttonLink,
 }: {
-  Icon: any;
+  icon: any;
   value?: string;
   label: string;
   button?: string;
@@ -24,18 +30,18 @@ function StatCard({
 }) {
   const { push } = useRouter();
   return (
-    <div className="relative bg-[rgb(255_255_255_/_8%)] backdrop-blur-md p-3 rounded-2xl w-full h-[118px] flex flex-col justify-end">
-      <div className="absolute top-2 right-2 bg-white/10 p-2 rounded-full">
-        <Icon className="w-4 h-4 text-gray-400" />
+    <div className="relative bg-white-6 p-3 rounded-2xl w-full h-[118px] flex flex-col justify-end">
+      <div className="absolute top-2 right-2 bg-white-4 p-2 rounded-full">
+        <Image width={16} height={16} src={icon} alt={icon} />
       </div>
       <div>
         {label && (
-          <div className="text-xs/4 font-normal text-white mb-2 overflow-hidden truncate">{label}</div>
+          <div className="text-xs/4 font-normal text-baseGray mb-2 overflow-hidden truncate">
+            {label}
+          </div>
         )}
         {value && (
-          <div className="text-white font-medium text-base/[19px]">
-            {value}
-          </div>
+          <div className="text-white font-medium text-base/[19px]">{value}</div>
         )}
         {button && buttonLink && (
           <button
@@ -56,7 +62,7 @@ export default function TrafficStats() {
       {stats.map((stat, index) => (
         <StatCard
           key={index}
-          Icon={stat.icon}
+          icon={stat.icon}
           value={stat.value}
           label={stat.label}
           button={stat.button}

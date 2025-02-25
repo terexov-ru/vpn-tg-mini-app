@@ -36,7 +36,7 @@ const faqItems = [
 export function FAQ() {
   return (
     <div className="relative">
-      <div className="absolute inset-0 bg-white/5 backdrop-blur-md mask-gradient rounded-t-3xl"/>
+      <div className="absolute inset-0 bg-white-4 mask-gradient rounded-t-3xl"/>
       <div className="relative px-4 py-5">
         <h2 className="text-white text-[20px] font-medium mb-5">
           Часто задаваемые вопросы

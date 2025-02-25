@@ -11,7 +11,11 @@ export default {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
-        accent: "#6F40DC", 
+        accent: "#723CEB", 
+        baseGray: 'rgba(255, 255, 255, 0.72)', 
+        ['white-4']: 'rgba(255,255,255,0.04)',
+        ['white-6']: 'rgba(255,255,255,0.06)'
+
       },
       keyframes: {
 				slideDown: {

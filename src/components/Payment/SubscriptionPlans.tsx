@@ -31,7 +31,7 @@ export function SubscriptionPlans() {
       {plans.map((plan, index) => (
         <div
           key={index}
-          className="bg-white/5 backdrop-blur-md p-4 pb-[14px] rounded-2xl min-w-[180px] flex-grow flex-[1_0_0%] flex flex-col justify-between"
+          className="bg-white-4 p-4 pb-[14px] rounded-2xl min-w-[180px] flex-grow flex-[1_0_0%] flex flex-col justify-between"
         >
           <div>
             <h3 className="text-sm/4 font-medium text-white mb-3">
@@ -41,7 +41,7 @@ export function SubscriptionPlans() {
               <span className="text-[22px]/[26px] font-medium text-white pr-[2px]">
                 {plan.price}
               </span>
-              <span className="text-xs font-normal text-gray-200">
+              <span className="text-xs font-normal text-baseGray">
                 {plan.period}
               </span>
             </p>
@@ -57,7 +57,7 @@ export function SubscriptionPlans() {
                     />
                   </div>
 
-                  <span className="text-xs font-normal text-gray-200 overflow-hidden truncate">
+                  <span className="text-xs font-normal text-baseGray overflow-hidden truncate">
                     {feature}
                   </span>
                 </li>
