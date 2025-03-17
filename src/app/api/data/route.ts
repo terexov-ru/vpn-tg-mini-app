@@ -1,5 +1,7 @@
 "use server";
 
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
+
 import { NextResponse } from "next/server";
 
 import {
@@ -27,7 +29,7 @@ async function fetchAPI<T>(
       options.body = JSON.stringify(body);
     }
 
-    const response = await fetch(url, options);
+    const response = await globalThis.fetch(url, options);
 
     if (!response.ok) {
       throw new Error(
@@ -35,8 +37,7 @@ async function fetchAPI<T>(
       );
     }
 
-    const data: T = await response.json();
-    return data;
+    return await response.json();
   } catch (error) {
     console.error(`🚨 Ошибка запроса к ${endpoint}:`, error);
     return null;
