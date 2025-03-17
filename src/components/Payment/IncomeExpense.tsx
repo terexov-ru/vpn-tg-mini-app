@@ -1,6 +1,6 @@
 "use client";
 
-import { fetchIncomeExpense, IncomeExpenseType } from "@/app/api/icomeExpenses";
+import { fetchIncomeExpense, IncomeExpenseType } from "@/api/icomeExpenses";
 import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
 
