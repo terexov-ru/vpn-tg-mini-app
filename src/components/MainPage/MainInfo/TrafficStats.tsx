@@ -1,38 +1,81 @@
 "use client";
 
-import { Download, Upload, Signal } from "lucide-react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import { useUserStore } from "@/store/useUserStore";
+import { format } from "date-fns";
+import { ru } from "date-fns/locale";
 
-const stats = [
-  { icon: "/time.svg", value: "00:18:56", label: "Время визита" },
-  { icon: "/people.svg", value: "2392032", label: "Кол-во юзеров" },
-  {
-    icon: "/invite.svg",
-    label: "Позвать друга",
-    button: "Позвать",
-    buttonLink: "#!",
-  },
-];
+const BOT_BASE_URL =
+  process.env.NEXT_PUBLIC_BOT_URL || "https://t.me/RaxmonovVPN_bot";
+
+export default function TrafficStats() {
+  const { user } = useUserStore();
+  const [userCount, setUserCount] = useState<number>(8317);
+
+  useEffect(() => {
+    const storedCount = sessionStorage.getItem("userCount");
+    let previousCount = storedCount ? parseInt(storedCount, 10) : 8317;
+
+    const randomIncrease = 20 + Math.floor(Math.random() * 9) + 1;
+    const newCount = previousCount + randomIncrease;
+
+    sessionStorage.setItem("userCount", newCount.toString());
+    setUserCount(newCount);
+  }, []);
+
+  const referralLink = user?.refer
+    ? `${BOT_BASE_URL}?start=ref-${user.refer}`
+    : "";
+
+  const registrationDate = user?.date_assigned
+    ? format(new Date(user.date_assigned), "d MMMM yyyy", { locale: ru })
+    : "Загрузка...";
+
+  const stats = [
+    { icon: "/time.svg", value: registrationDate, label: "Дата регистрации" },
+    {
+      icon: "/people.svg",
+      value: userCount.toLocaleString(),
+      label: "Кол-во юзеров",
+    },
+    {
+      icon: "/invite.svg",
+      label: "Позвать друга",
+      button: referralLink && <CopyButton text={referralLink} />,
+    },
+  ];
+
+  return (
+    <div className="grid grid-cols-3 gap-3 w-full">
+      {stats.map((stat, index) => (
+        <StatCard
+          key={index}
+          icon={stat.icon}
+          value={stat.value}
+          label={stat.label}
+          button={stat.button}
+        />
+      ))}
+    </div>
+  );
+}
 
 function StatCard({
   icon,
   value,
   label,
   button,
-  buttonLink,
 }: {
-  icon: any;
+  icon: string;
   value?: string;
   label: string;
-  button?: string;
-  buttonLink?: string;
+  button?: React.ReactNode;
 }) {
-  const { push } = useRouter();
   return (
     <div className="relative bg-white-6 p-3 rounded-2xl w-full h-[118px] flex flex-col justify-end">
       <div className="absolute top-2 right-2 bg-white-4 p-2 rounded-full">
-        <Image width={16} height={16} src={icon} alt={icon} />
+        <Image width={16} height={16} src={icon} alt={label} />
       </div>
       <div>
         {label && (
@@ -43,32 +86,31 @@ function StatCard({
         {value && (
           <div className="text-white font-medium text-base/[19px]">{value}</div>
         )}
-        {button && buttonLink && (
-          <button
-            className="rounded-[40px] bg-accent flex items-center justify-center px-3 py-[5px] text-xs font-normal max-w-full text-white hover:bg-accent"
-            onClick={() => push(buttonLink)}
-          >
-            {button}
-          </button>
-        )}
+        {button && <div>{button}</div>}
       </div>
     </div>
   );
 }
 
-export default function TrafficStats() {
+function CopyButton({ text }: { text: string }) {
+  const [isCopied, setIsCopied] = useState(false);
+
+  const handleCopy = () => {
+    navigator.clipboard.writeText(text);
+    setIsCopied(true);
+    setTimeout(() => setIsCopied(false), 2000);
+  };
+
   return (
-    <div className="grid grid-cols-3 gap-3 w-full">
-      {stats.map((stat, index) => (
-        <StatCard
-          key={index}
-          icon={stat.icon}
-          value={stat.value}
-          label={stat.label}
-          button={stat.button}
-          buttonLink={stat.buttonLink}
-        />
-      ))}
-    </div>
+    <button
+      onClick={handleCopy}
+      className={`rounded-[40px] flex items-center justify-center px-3 py-[5px] text-xs font-normal max-w-full transition shadow-md ${
+        isCopied
+          ? "bg-green-500 text-white"
+          : "bg-accent text-white hover:bg-accent"
+      }`}
+    >
+      {isCopied ? "Скопировано" : "Скопировать"}
+    </button>
   );
 }

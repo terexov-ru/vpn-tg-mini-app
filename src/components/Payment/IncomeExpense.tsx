@@ -1,19 +1,12 @@
 "use client";
 
-import { fetchIncomeExpense, IncomeExpenseType } from "@/api/icomeExpenses";
-import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
 
 export function IncomeExpense() {
-  const { data: incomeExpense = [], isLoading } = useQuery<IncomeExpenseType[]>(
-    {
-      queryKey: ["incomeExpense"],
-      queryFn: fetchIncomeExpense,
-      staleTime: 60000,
-    }
-  );
+  const data = [] as any[];
+  const isLoading = false;
 
-  const isEmpty = incomeExpense.length === 0;
+  const isEmpty = data.length === 0;
 
   return (
     <section className="px-4">
@@ -50,16 +43,18 @@ export function IncomeExpense() {
               </tr>
             </thead>
             <tbody>
-              {incomeExpense.map((item, index) => (
+              {data.map((item, index) => (
                 <tr
                   key={index}
                   className={`text-sm font-medium ${
-                    index !== incomeExpense.length - 1
+                    index !== data.length - 1
                       ? "border-b border-[#ebedf027]"
                       : ""
                   }`}
                 >
-                  <td className="py-3 px-3 text-left text-baseGray">{item.month}</td>
+                  <td className="py-3 px-3 text-left text-baseGray">
+                    {item.month}
+                  </td>
                   <td className="py-3 px-3 text-center">{item.refer}</td>
                   <td className="py-3 px-3 text-right">{item.earn}</td>
                 </tr>

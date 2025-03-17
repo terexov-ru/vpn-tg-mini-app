@@ -1,36 +1,31 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useUserStore } from "@/store/useUserStore";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 export function AppWrapper({ children }: { children: React.ReactNode }) {
-  const [queryClient] = useState(() => new QueryClient());
   const {
     fetchUserData,
     fetchTransactions,
     fetchCredentials,
+    fetchPlans,
     isLoading,
     subscriptionStatus,
   } = useUserStore();
 
   useEffect(() => {
-    fetchUserData(queryClient).then(() => {
+    fetchUserData().then(() => {
       if (subscriptionStatus === "active") {
-        fetchTransactions(queryClient)
-        fetchCredentials(queryClient); // 🔹 Загружаем транзакции только если подписка активна
+        fetchTransactions();
+        fetchCredentials();
       }
+      fetchPlans();
     });
-  }, [fetchUserData, fetchTransactions, subscriptionStatus, queryClient]);
+  }, [fetchUserData, fetchTransactions, subscriptionStatus]);
 
-  return (
-    <QueryClientProvider client={queryClient}>
-      {isLoading ? <LoadingScreen /> : children}
-    </QueryClientProvider>
-  );
+  return <>{isLoading ? <LoadingScreen /> : children}</>;
 }
 
-// 🔹 Экран загрузки
 function LoadingScreen() {
   return (
     <div className="flex items-center justify-center h-screen bg-gray-900 text-white">

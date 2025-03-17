@@ -2,8 +2,9 @@ import { create } from "zustand";
 import { fetchTelegramUser } from "@/api/fetchTelegramUser";
 import { fetchSubscriptions } from "@/api/fetchSubscription";
 import { fetchTransactions } from "@/api/fetchTransactions";
-import { fetchCredentials } from "@/api/fetchCredentials"; // 🔹 Добавляем API для VPN-ключа
-import { QueryClient } from "@tanstack/react-query";
+import { fetchCredentials } from "@/api/fetchCredentials";
+import { TelegramUser } from "@/types";
+import { fetchFixedPlans } from "@/api/fetchPlans";
 
 type Subscription = {
   id: string;
@@ -17,32 +18,44 @@ type Credential = {
   is_active: boolean;
 };
 
+type Cost = {
+  id: string;
+  cost: string;
+  recurrence_period: number;
+  recurrence_unit: string;
+};
+
 type SubscriptionStatus = "no_subscription" | "active" | "expired";
 
 type UserState = {
+  user: TelegramUser | null;
   tgId: number | null;
   isLoading: boolean;
   subscription: Subscription | null;
   subscriptionStatus: SubscriptionStatus;
   credentials: Credential[] | null;
   transactions: any[] | null;
+  plans: Cost[] | null;
   setTgId: (id: number) => void;
-  fetchUserData: (queryClient: QueryClient) => Promise<void>;
-  fetchTransactions: (queryClient: QueryClient) => Promise<void>;
-  fetchCredentials: (queryClient: QueryClient) => Promise<void>;
+  fetchUserData: () => Promise<void>;
+  fetchTransactions: () => Promise<void>;
+  fetchCredentials: () => Promise<void>;
+  fetchPlans: () => Promise<void>;
 };
 
 export const useUserStore = create<UserState>((set, get) => ({
+  user: null,
   tgId: null,
   isLoading: true,
   subscription: null,
   subscriptionStatus: "no_subscription",
   credentials: null,
   transactions: null,
+  plans: null,
 
   setTgId: (id) => set({ tgId: id }),
 
-  fetchUserData: async (queryClient) => {
+  fetchUserData: async () => {
     set({ isLoading: true });
 
     try {
@@ -51,8 +64,8 @@ export const useUserStore = create<UserState>((set, get) => ({
 
       const user = await fetchTelegramUser(tgId);
       if (!user) throw new Error("Пользователь не найден");
+      set({ user });
 
-      // 🔹 Загружаем подписку
       const subscriptionData = await fetchSubscriptions(tgId);
       const subscription = subscriptionData?.subscriptions?.[0] || null;
 
@@ -62,40 +75,45 @@ export const useUserStore = create<UserState>((set, get) => ({
       }
 
       set({ subscription, subscriptionStatus, isLoading: false });
-
-      queryClient.setQueryData(["telegramUser", tgId], user);
-      queryClient.setQueryData(["subscriptions", tgId], subscriptionData);
     } catch (error) {
       console.error("❌ Ошибка загрузки данных:", error);
       set({ isLoading: false, subscriptionStatus: "no_subscription" });
     }
   },
 
-  fetchTransactions: async (queryClient) => {
+  fetchTransactions: async () => {
     const { tgId, subscriptionStatus } = get();
     if (!tgId || subscriptionStatus !== "active") return;
 
     try {
       const transactions = await fetchTransactions(tgId);
       set({ transactions: transactions?.transactions || [] });
-
-      queryClient.setQueryData(["transactions", tgId], transactions);
     } catch (error) {
       console.error("❌ Ошибка загрузки транзакций:", error);
     }
   },
 
-  fetchCredentials: async (queryClient) => {
+  fetchCredentials: async () => {
     const { tgId, subscriptionStatus } = get();
     if (!tgId || subscriptionStatus !== "active") return;
 
     try {
       const credentialsData = await fetchCredentials(tgId);
       set({ credentials: credentialsData?.credentials || [] });
-
-      queryClient.setQueryData(["credentials", tgId], credentialsData);
     } catch (error) {
       console.error("❌ Ошибка загрузки VPN-ключа:", error);
+    }
+  },
+
+  fetchPlans: async () => {
+    try {
+      console.log('check 1')
+      const plansData = await fetchFixedPlans();
+      console.log('check 2')
+
+      set({ plans: plansData });
+    } catch (error) {
+      console.error("❌ Ошибка загрузки тарифов:", error);
     }
   },
 }));

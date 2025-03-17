@@ -11,9 +11,9 @@ export function TransactionHistory() {
     <section className="mb-4 mx-4 bg-[#171819] px-4 py-[18px] rounded-[20px] text-white">
       <div className="flex justify-between items-center mb-5">
         <h2 className="text-xl/6 font-medium">История транзакций</h2>
-        <button className="text-sm/[18px] font-normal text-gray-400">
+        {/* <button className="text-sm/[18px] font-normal text-gray-400">
           Подробнее
-        </button>
+        </button> */}
       </div>
       {isLoading || isEmpty ? (
         <div className="flex flex-col gap-[6px] justify-center items-center py-4">
@@ -32,12 +32,12 @@ export function TransactionHistory() {
                     <div className="w-[42px] h-[42px] rounded-full bg-[#DFE2E6]"></div>
                     <div>
                       <div className="font-medium text-[15px]/[18px]">
-                        {transaction.id.slice(0, 8)}... {/* Короткий ID */}
-                      </div>
-                      <div className="text-gray-400 font-normal text-[13px]/[18px]">
                         {new Date(
                           transaction.date_transaction
                         ).toLocaleDateString("ru-RU")}
+                      </div>
+                      <div className="text-gray-400 font-normal text-[13px]/[18px]">
+                        {transaction.cancelled ? "Неупешно" : "Успешно"}
                       </div>
                     </div>
                   </div>
