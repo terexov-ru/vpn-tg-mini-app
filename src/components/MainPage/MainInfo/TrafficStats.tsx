@@ -75,7 +75,14 @@ function StatCard({
   return (
     <div className="relative bg-white-6 p-3 rounded-2xl w-full h-[118px] flex flex-col justify-end">
       <div className="absolute top-2 right-2 bg-white-4 p-2 rounded-full">
-        <Image width={16} height={16} src={icon} alt={label} />
+        <Image
+          width={16}
+          height={16}
+          src={icon}
+          alt={label}
+          loading="eager"
+          unoptimized={false}
+        />
       </div>
       <div>
         {label && (

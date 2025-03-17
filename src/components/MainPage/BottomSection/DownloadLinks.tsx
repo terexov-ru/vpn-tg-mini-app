@@ -14,7 +14,7 @@ const apps = [
     icon: "/apps/android.svg",
     alt: "Android App Icon",
   },
-  
+
   {
     name: "Windows",
     link: "https://s3.amazonaws.com/outline-releases/client/windows/stable/Outline-Client.exe",
@@ -26,14 +26,12 @@ const apps = [
     link: "https://itunes.apple.com/us/app/outline-app/id1356178125",
     icon: "/apps/apple.svg",
     alt: "macOS App Icon",
-
   },
   {
     name: "Linux",
     link: "https://support.google.com/outline/answer/15331527",
     icon: "/apps/linux.svg",
     alt: "Linux App Icon",
-
   },
 ];
 
@@ -48,7 +46,14 @@ export default function DownloadLinks() {
         >
           <div className="flex items-center gap-2 justify-between">
             <div className="w-[44px] h-[44px] bg-[#723CEB1A] rounded-full flex justify-center items-center">
-              <Image src={app.icon} alt={app.alt} width={20} height={20} />
+              <Image
+                src={app.icon}
+                alt={app.alt}
+                width={20}
+                height={20}
+                loading="eager"
+                unoptimized={false}
+              />
             </div>
           </div>
           <div className="mt-auto">
