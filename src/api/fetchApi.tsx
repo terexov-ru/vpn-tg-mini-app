@@ -1,36 +1,18 @@
-"use server";
-
-export async function fetchAPI<T>(
-  endpoint: string,
-  method: "GET" | "POST" = "GET",
-  body?: any
-): Promise<T | null> {
+export async function fetchData<T>(action: string, tgId?: number) {
   try {
-    const url = `https://109.176.30.186:12443/apiv0${endpoint}`;
-    const options: RequestInit = {
-      method,
-      headers: {
-        "Content-Type": "application/json",
-      },
-      cache: "no-store",
-    };
-
-    if (body) {
-      options.body = JSON.stringify(body);
-    }
-
-    const response = await fetch(url, options);
+    const response = await fetch(`/api/data`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ action, tgId }),
+    });
 
     if (!response.ok) {
-      throw new Error(
-        `Ошибка запроса: ${response.status} ${response.statusText}`
-      );
+      throw new Error(`Ошибка: ${response.status} ${response.statusText}`);
     }
 
-    const data: T = await response.json();
-    return data;
+    return response.json();
   } catch (error) {
-    console.error(`🚨 Ошибка запроса к ${endpoint}:`, error);
+    console.error(`🚨 Ошибка при вызове fetchData(${action}):`, error);
     return null;
   }
 }
