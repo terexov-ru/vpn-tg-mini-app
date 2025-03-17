@@ -1,10 +1,7 @@
 import { create } from "zustand";
-import { fetchTelegramUser } from "@/api/fetchTelegramUser";
-import { fetchSubscriptions } from "@/api/fetchSubscription";
-import { fetchTransactions } from "@/api/fetchTransactions";
-import { fetchCredentials } from "@/api/fetchCredentials";
+
 import { TelegramUser } from "@/types";
-import { fetchFixedPlans } from "@/api/fetchPlans";
+import { fetchCredentials, fetchFixedPlans, fetchSubscriptions, fetchTelegramUser, fetchTransactions } from "@/api/api";
 
 type Subscription = {
   id: string;
@@ -107,9 +104,9 @@ export const useUserStore = create<UserState>((set, get) => ({
 
   fetchPlans: async () => {
     try {
-      console.log('check 1')
+      console.log("check 1");
       const plansData = await fetchFixedPlans();
-      console.log('check 2')
+      console.log("check 2");
 
       set({ plans: plansData });
     } catch (error) {
