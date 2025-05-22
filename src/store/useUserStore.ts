@@ -38,6 +38,7 @@ type UserState = {
   fetchTransactions: () => Promise<void>;
   fetchCredentials: () => Promise<void>;
   fetchPlans: () => Promise<void>;
+  fetchPaymentLinks: () => Promise<void>;
 };
 
 export const useUserStore = create<UserState>((set, get) => ({
@@ -49,6 +50,7 @@ export const useUserStore = create<UserState>((set, get) => ({
   credentials: null,
   transactions: null,
   plans: null,
+  paymentLinks: null,
 
   setTgId: (id) => set({ tgId: id }),
 
@@ -72,6 +74,7 @@ export const useUserStore = create<UserState>((set, get) => ({
       }
 
       set({ subscription, subscriptionStatus, isLoading: false });
+
     } catch (error) {
       console.error("❌ Ошибка загрузки данных:", error);
       set({ isLoading: false, subscriptionStatus: "no_subscription" });
@@ -111,6 +114,18 @@ export const useUserStore = create<UserState>((set, get) => ({
       set({ plans: plansData });
     } catch (error) {
       console.error("❌ Ошибка загрузки тарифов:", error);
+    }
+  },
+
+  fetchPaymentLinks: async () => {
+    try {
+      console.log("check 1");
+      const paymentLinks = await fetchPaymentLinks();
+      console.log("check 2");
+
+      set({ paymentLinks: PaymentLinks });
+    } catch (error) {
+      console.error("❌ Ошибка загрузки ключей оплаты:", error);
     }
   },
 }));

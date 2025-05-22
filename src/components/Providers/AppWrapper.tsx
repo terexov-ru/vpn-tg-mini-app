@@ -20,6 +20,7 @@ export function AppWrapper({ children }: { children: React.ReactNode }) {
         fetchCredentials();
       }
       fetchPlans();
+      fetchPaymentLinks();
     });
   }, [fetchUserData, fetchTransactions, subscriptionStatus]);
 

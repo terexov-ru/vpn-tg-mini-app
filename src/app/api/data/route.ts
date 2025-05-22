@@ -11,11 +11,10 @@ import {
 } from "@/types";
 
 async function fetchAPI<T>()(
-  baseUrl: string = "109.176.30.186:12443/apiv0",
   endpoint: string,
   method: "GET" | "POST" = "GET",
-  data?: any,
   body?: any,
+  baseUrl: string = "109.176.30.186:12443/apiv0",
 ): Promise<T | null> {
   try {
     const url = `https://${baseUrl}${endpoint}`;
@@ -31,7 +30,7 @@ async function fetchAPI<T>()(
       options.body = JSON.stringify(body);
     }
 
-    const response = await globalThis.fetch(url, options, data);
+    const response = await globalThis.fetch(url, options);
 
     if (!response.ok) {
       throw new Error(
@@ -120,20 +119,20 @@ export async function POST(req: Request) {
         );
         break;
 	
-      case "fetchCostLink":
+      case "fetchPaymentLink":
         if (!tgId)
           return NextResponse.json(
             { error: "tgId is required" },
             { status: 400 }
           );
-        data = await fetchAPI<TransactionResponse>(
+        data = await fetchAPI<{ links: string[]}>(
           `/telegramusers/${tgId}/get_link`
         );
         break;
 
       default:
         return NextResponse.json({ error: "Invalid action" }, { status: 400 });
-    }
+
 
     return NextResponse.json(data);
   } catch (error) {
