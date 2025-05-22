@@ -1,6 +1,7 @@
 "use client";
 
 import { useUserStore } from "@/store/useUserStore";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 
 const planFeatures: Record<string, string[]> = {
@@ -29,6 +30,8 @@ const translatePeriod = (unit: string) => {
 
 export function SubscriptionPlans() {
   const { plans, isLoading } = useUserStore();
+  const router = useRouter();
+  let paymentLink = "https://yoomoney.ru/checkout/payments/v2/contract?orderId=2fc11da3-000f-5001-9000-1ef2142d2e16"; 
 
   return (
     <section className="mx-4 mb-5 overflow-x-auto flex gap-[10px] no-scrollbar text-white">
@@ -74,7 +77,7 @@ export function SubscriptionPlans() {
                 </ul>
               )}
             </div>
-            <button className="bg-accent rounded-[60px] text-xs/4 font-medium w-full py-2" onClick={() => router.push('https://yoomoney.ru/checkout/payments/v2/contract?orderId=2fc11da3-000f-5001-9000-1ef2142d2e16')}>
+            <button className="bg-accent rounded-[60px] text-xs/4 font-medium w-full py-2" onClick={() => router.push(paymentLink)}>
               Купить
             </button>
           </div>
