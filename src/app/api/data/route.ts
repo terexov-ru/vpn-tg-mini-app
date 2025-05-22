@@ -14,7 +14,7 @@ async function fetchAPI<T>()(
   baseUrl: string = "109.176.30.186:12443/apiv0",
   endpoint: string,
   method: "GET" | "POST" = "GET",
-  data: interface,
+  data?: any,
   body?: any,
 ): Promise<T | null> {
   try {
