@@ -31,7 +31,7 @@ const translatePeriod = (unit: string) => {
 export function SubscriptionPlans() {
   const { plans, isLoading } = useUserStore();
   const router = useRouter();
-  let paymentLink = "https://yoomoney.ru/checkout/payments/v2/contract?orderId=2fc11da3-000f-5001-9000-1ef2142d2e16"; 
+  let paymentLink = "https://yoomoney.ru/checkout/payments/v2/contract?orderId=2fc12932-000f-5001-8000-1b2725d02c76"; 
 
   return (
     <section className="mx-4 mb-5 overflow-x-auto flex gap-[10px] no-scrollbar text-white">
