@@ -10,13 +10,15 @@ import {
   TransactionResponse,
 } from "@/types";
 
-async function fetchAPI<T>(
+async function fetchAPI<T>()(
+  baseUrl: string = "109.176.30.186:12443/apiv0",
   endpoint: string,
   method: "GET" | "POST" = "GET",
-  body?: any
+  data: interface,
+  body?: any,
 ): Promise<T | null> {
   try {
-    const url = `https://109.176.30.186:12443/apiv0${endpoint}`;
+    const url = `https://${baseUrl}${endpoint}`;
     const options: RequestInit = {
       method,
       headers: {
@@ -29,7 +31,7 @@ async function fetchAPI<T>(
       options.body = JSON.stringify(body);
     }
 
-    const response = await globalThis.fetch(url, options);
+    const response = await globalThis.fetch(url, options, data);
 
     if (!response.ok) {
       throw new Error(
@@ -115,6 +117,17 @@ export async function POST(req: Request) {
           );
         data = await fetchAPI<TransactionResponse>(
           `/telegramusers/${tgId}/get_transactions`
+        );
+        break;
+	
+      case "fetchCostLink":
+        if (!tgId)
+          return NextResponse.json(
+            { error: "tgId is required" },
+            { status: 400 }
+          );
+        data = await fetchAPI<TransactionResponse>(
+          `/telegramusers/${tgId}/get_link`
         );
         break;
 
