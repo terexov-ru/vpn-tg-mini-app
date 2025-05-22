@@ -7,7 +7,7 @@ import { NextResponse } from "next/server";
 import {
   TelegramUser,
   SubscriptionResponse,
-  TransactionResponse,
+  TransactionResponse
 } from "@/types";
 
 async function fetchAPI<T>()(
