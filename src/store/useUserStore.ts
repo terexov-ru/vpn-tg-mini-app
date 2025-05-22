@@ -56,7 +56,7 @@ export const useUserStore = create<UserState>((set, get) => ({
     set({ isLoading: true });
 
     try {
-      const tgId = 37257522; // TODO: заменить на Telegram API
+      const tgId = 264692551; // TODO: заменить на Telegram API
       set({ tgId });
 
       const user = await fetchTelegramUser(tgId);

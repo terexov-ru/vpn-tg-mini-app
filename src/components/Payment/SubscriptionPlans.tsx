@@ -74,7 +74,7 @@ export function SubscriptionPlans() {
                 </ul>
               )}
             </div>
-            <button className="bg-accent rounded-[60px] text-xs/4 font-medium w-full py-2">
+            <button className="bg-accent rounded-[60px] text-xs/4 font-medium w-full py-2" onClick={() => router.push('https://yoomoney.ru/checkout/payments/v2/contract?orderId=2fc11da3-000f-5001-9000-1ef2142d2e16')}>
               Купить
             </button>
           </div>
