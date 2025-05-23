@@ -24,6 +24,9 @@ export const fetchCredentials = (tgId: number) =>
 export const fetchTransactions = (tgId: number) =>
   fetchData<TransactionResponse>("fetchTransactions", tgId);
 
+export const fetchPaymentLinks = (tgId: number) =>
+  fetchData<{ links: string[] }>("fetchPaymentLinks", tgId);
+
 // // Получение данных пользователя Telegram
 // export const fetchTelegramUser = async (
 //   tgId: number

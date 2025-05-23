@@ -1,7 +1,7 @@
 import { create } from "zustand";
 
 import { TelegramUser } from "@/types";
-import { fetchCredentials, fetchFixedPlans, fetchSubscriptions, fetchTelegramUser, fetchTransactions } from "@/api/api";
+import { fetchCredentials, fetchFixedPlans, fetchSubscriptions, fetchTelegramUser, fetchTransactions, fetchPaymentLinks } from "@/api/api";
 
 type Subscription = {
   id: string;
