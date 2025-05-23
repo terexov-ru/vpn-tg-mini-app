@@ -33,6 +33,7 @@ type UserState = {
   credentials: Credential[] | null;
   transactions: any[] | null;
   plans: Cost[] | null;
+  paymentLinks: string[] | null;
   setTgId: (id: number) => void;
   fetchUserData: () => Promise<void>;
   fetchTransactions: () => Promise<void>;
