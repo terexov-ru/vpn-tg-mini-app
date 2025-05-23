@@ -10,7 +10,7 @@ import {
   TransactionResponse
 } from "@/types";
 
-async function fetchAPI<T>()(
+async function fetchAPI<T>(
   endpoint: string,
   method: "GET" | "POST" = "GET",
   body?: any,
