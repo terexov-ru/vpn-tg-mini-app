@@ -119,12 +119,12 @@ export const useUserStore = create<UserState>((set, get) => ({
   },
 
   fetchPaymentLinks: async () => {
-    try {
-      console.log("check 1");
-      const paymentLinks = await fetchPaymentLinks();
-      console.log("check 2");
+    const { tgId } = get();
+    if (!tgId) return;
 
-      set({ paymentLinks: PaymentLinks });
+    try {
+      const paymentLinks = await fetchPaymentLinks(tgId);
+      set({ paymentLinks: paymentLinks }); //?.credentials || []
     } catch (error) {
       console.error("❌ Ошибка загрузки ключей оплаты:", error);
     }
