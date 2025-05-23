@@ -9,6 +9,7 @@ export function AppWrapper({ children }: { children: React.ReactNode }) {
     fetchTransactions,
     fetchCredentials,
     fetchPlans,
+    fetchPaymentLinks,
     isLoading,
     subscriptionStatus,
   } = useUserStore();
