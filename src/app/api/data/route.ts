@@ -132,6 +132,7 @@ export async function POST(req: Request) {
 
       default:
         return NextResponse.json({ error: "Invalid action" }, { status: 400 });
+    }
 
 
     return NextResponse.json(data);
