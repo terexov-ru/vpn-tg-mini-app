@@ -77,7 +77,8 @@ export function SubscriptionPlans() {
               )}
             </div>
             <button className="bg-accent rounded-[60px] text-xs/4 font-medium w-full py-2" onClick={() => router.push( paymentLinks?paymentLinks[i]:"" )}>
-              Купить
+              Купить{paymentLinks?paymentLinks[i]:""}
+
             </button>
           </div>
         ))
