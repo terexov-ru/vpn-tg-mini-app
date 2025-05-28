@@ -124,7 +124,7 @@ export const useUserStore = create<UserState>((set, get) => ({
 
     try {
       const paymentLinks = await fetchPaymentLinks(tgId);
-      set({ paymentLinks: paymentLinks }); //?.credentials || []
+      set({ paymentLinks: paymentLinks?.paymentLinks || [] });
     } catch (error) {
       console.error("❌ Ошибка загрузки ключей оплаты:", error);
     }
