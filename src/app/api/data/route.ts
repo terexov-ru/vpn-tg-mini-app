@@ -126,7 +126,7 @@ export async function POST(req: Request) {
             { status: 400 }
           );
         data = await fetchAPI<{ links: string[]}>(
-          `/telegramusers/${tgId}/get_link`
+          `/telegramusers/${tgId}/get_links`
         );
         break;
 
