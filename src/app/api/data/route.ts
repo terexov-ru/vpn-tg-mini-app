@@ -119,7 +119,7 @@ export async function POST(req: Request) {
         );
         break;
 	
-      case "fetchPaymentLink":
+      case "fetchPaymentLinks":
         if (!tgId)
           return NextResponse.json(
             { error: "tgId is required" },
