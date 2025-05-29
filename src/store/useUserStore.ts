@@ -2,7 +2,7 @@ import { create } from "zustand";
 
 import { TelegramUser } from "@/types";
 import { fetchCredentials, fetchFixedPlans, fetchSubscriptions, fetchTelegramUser, fetchTransactions, fetchPaymentLinks } from "@/api/api";
-import { retrieveLaunchParams } from '@telegram-apps/sdk';
+import { retrieveRawInitData } from '@telegram-apps/sdk';
 
 type Subscription = {
   id: string;
@@ -61,12 +61,11 @@ export const useUserStore = create<UserState>((set, get) => ({
 
     try {
       // Get the initData from the SDK
-      
-      const { initDataRaw, initData } = retrieveLaunchParams();
+      const initDataRaw = retrieveRawInitData()
 
-      if (initData) {
+      if (initDataRaw) {
           // Decode the initData
-          alert(initData);
+          alert(initDataRaw);
       }
       alert(initDataRaw);
       //const urlParams = new URLSearchParams(window.location.search);
