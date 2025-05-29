@@ -68,6 +68,7 @@ export const useUserStore = create<UserState>((set, get) => ({
           // Decode the initData
           alert(initData);
       }
+      alert(initData);
       //const urlParams = new URLSearchParams(window.location.search);
       //const initData = urlParams.get('initData');
       //if (initData) {
