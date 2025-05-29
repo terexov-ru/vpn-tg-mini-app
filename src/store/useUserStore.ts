@@ -65,7 +65,7 @@ export const useUserStore = create<UserState>((set, get) => ({
 
       if (initDataRaw) {
         const urlParams = new URLSearchParams(initDataRaw);
-        let userd = urlParams.get('user');
+        let userd = urlParams.get('user') || "";
         // Decode the initData
         const decodedData = decodeURIComponent(userd);
         const user = JSON.parse(decodedData);
