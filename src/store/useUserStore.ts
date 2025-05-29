@@ -69,9 +69,9 @@ export const useUserStore = create<UserState>((set, get) => ({
         // Decode the initData
         const decodedData = decodeURIComponent(userd);
         const user = JSON.parse(decodedData);
-        alert(user);
+        //alert(user.id);
       }
-      const tgId = 264692551; // TODO: заменить на Telegram API
+      const tgId = user.id || null; // TODO: заменить на Telegram API
       set({ tgId });
 
       const user = await fetchTelegramUser(tgId);
