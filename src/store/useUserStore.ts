@@ -64,18 +64,13 @@ export const useUserStore = create<UserState>((set, get) => ({
       const initDataRaw = retrieveRawInitData()
 
       if (initDataRaw) {
-          // Decode the initData
-          alert(initDataRaw);
-      }
-      alert(initDataRaw);
-      //const urlParams = new URLSearchParams(window.location.search);
-      //const initData = urlParams.get('initData');
-      //if (initData) {
+        const urlParams = new URLSearchParams(initDataRaw);
+        let userd = urlParams.get('user');
         // Decode the initData
-      //  const decodedData = decodeURIComponent(initData);
-      //  const user = JSON.parse(decodedData);
-      //  alert(user)
-      //}
+        const decodedData = decodeURIComponent(userd);
+        const user = JSON.parse(decodedData);
+        alert(user);
+      }
       const tgId = 264692551; // TODO: заменить на Telegram API
       set({ tgId });
 
