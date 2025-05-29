@@ -61,6 +61,8 @@ export const useUserStore = create<UserState>((set, get) => ({
 
     try {
       // Get the initData from the SDK
+      
+      initData.restore();
       const userd = initData.user();
 
       if (userd) {
