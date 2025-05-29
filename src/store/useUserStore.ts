@@ -2,6 +2,7 @@ import { create } from "zustand";
 
 import { TelegramUser } from "@/types";
 import { fetchCredentials, fetchFixedPlans, fetchSubscriptions, fetchTelegramUser, fetchTransactions, fetchPaymentLinks } from "@/api/api";
+import { WebApp } from '@telegram-web-app/sdk';
 
 type Subscription = {
   id: string;
@@ -59,14 +60,25 @@ export const useUserStore = create<UserState>((set, get) => ({
     set({ isLoading: true });
 
     try {
-      const urlParams = new URLSearchParams(window.location.search);
-      const initData = urlParams.get('initData');
+      WebApp.ready();
+
+      // Get the initData from the SDK
+      const initData = WebApp.initData;
+
       if (initData) {
-        // Decode the initData
-        const decodedData = decodeURIComponent(initData);
-        const user = JSON.parse(decodedData);
-	alert(user)
+          // Decode the initData
+          const decodedData = decodeURIComponent(initData);
+          const user = JSON.parse(decodedData);
+          alert(user);
       }
+      //const urlParams = new URLSearchParams(window.location.search);
+      //const initData = urlParams.get('initData');
+      //if (initData) {
+        // Decode the initData
+      //  const decodedData = decodeURIComponent(initData);
+      //  const user = JSON.parse(decodedData);
+      //  alert(user)
+      //}
       const tgId = 264692551; // TODO: заменить на Telegram API
       set({ tgId });
 
