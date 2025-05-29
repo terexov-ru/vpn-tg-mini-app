@@ -63,11 +63,10 @@ export const useUserStore = create<UserState>((set, get) => ({
       // Get the initData from the SDK
       
       const { initDataRaw, initData } = retrieveLaunchParams();
-      const userd = initData.user();
 
-      if (userd) {
+      if (initData) {
           // Decode the initData
-          alert(userd);
+          alert(initData);
       }
       //const urlParams = new URLSearchParams(window.location.search);
       //const initData = urlParams.get('initData');
