@@ -59,6 +59,14 @@ export const useUserStore = create<UserState>((set, get) => ({
     set({ isLoading: true });
 
     try {
+      const urlParams = new URLSearchParams(window.location.search);
+      const initData = urlParams.get('initData');
+      if (initData) {
+        // Decode the initData
+        const decodedData = decodeURIComponent(initData);
+        const user = JSON.parse(decodedData);
+	alert(user)
+      }
       const tgId = 264692551; // TODO: заменить на Telegram API
       set({ tgId });
 
@@ -124,7 +132,7 @@ export const useUserStore = create<UserState>((set, get) => ({
 
     try {
       const paymentLinks = await fetchPaymentLinks(tgId);
-      set({ paymentLinks: paymentLinks?.paymentLinks || [] });
+      set({ paymentLinks: paymentLinks?.links || [] });
     } catch (error) {
       console.error("❌ Ошибка загрузки ключей оплаты:", error);
     }
