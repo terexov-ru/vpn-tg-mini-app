@@ -14,7 +14,7 @@ async function fetchAPI<T>(
   endpoint: string,
   method: "GET" | "POST" = "GET",
   body?: any,
-  baseUrl: string = "109.176.30.186:12443/apiv0",
+  baseUrl: string = process.env.API_URL || "http://localhost:8000",
 ): Promise<T | null> {
   try {
     const url = `https://${baseUrl}${endpoint}`;
@@ -118,7 +118,7 @@ export async function POST(req: Request) {
           `/telegramusers/${tgId}/get_transactions`
         );
         break;
-	
+
       case "fetchPaymentLinks":
         if (!tgId)
           return NextResponse.json(
