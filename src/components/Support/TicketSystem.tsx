@@ -7,13 +7,8 @@ export function TicketSystem() {
         Запрос в поддержку
       </h2>
       <section className="bg-white-4 p-4 rounded-xl text-white">
-        <h2 className="text-[17px]/5 font-medium mb-3">
-          Перенаправление в аккаунт Telegram
-        </h2>
         <p className="text-sm font-normal text-baseGray">
-          Легко получите доступ к вашему VPN-аккаунту в Telegram для поддержки и
-          обновлений. Нажмите на ссылку, чтобы открыть Telegram и управлять всем
-          без лишних усилий.
+          Напишите в чат поддержки, если не нашли ответ на интересующий вас вопрос
         </p>
       </section>
     </div>

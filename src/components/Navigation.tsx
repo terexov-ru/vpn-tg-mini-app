@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Home, ShieldCheck, Settings } from "lucide-react";
+import { Home, ShieldCheck, Info } from "lucide-react";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
@@ -17,7 +17,7 @@ export default function Navigation() {
   const menuItems = [
     { href: "/", icon: Home, label: "Главная" },
     { href: "/payment", icon: ShieldCheck, label: "Оплата" },
-    { href: "/support", icon: Settings, label: "Поддержка" },
+    { href: "/support", icon: Info, label: "Поддержка" },
   ];
   return (
     <nav className="fixed bottom-0 w-full max-w-[500px] pb-2 bg-[#0D0E0F] pt-2">
