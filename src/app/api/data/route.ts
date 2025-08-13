@@ -7,7 +7,7 @@ import { NextResponse } from "next/server";
 import {
   TelegramUser,
   SubscriptionResponse,
-  TransactionResponse
+  TransactionResponse,
 } from "@/types";
 
 async function fetchAPI<T>(
@@ -34,7 +34,7 @@ async function fetchAPI<T>(
 
     if (!response.ok) {
       throw new Error(
-        `Ошибка запроса: ${response.status} ${response.statusText}`
+        `Ошибка запроса: ${response.status} ${response.statusText}`,
       );
     }
 
@@ -57,7 +57,7 @@ export async function POST(req: Request) {
     if (!action) {
       return NextResponse.json(
         { error: "Action is required" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -68,7 +68,7 @@ export async function POST(req: Request) {
         if (!tgId)
           return NextResponse.json(
             { error: "tgId is required" },
-            { status: 400 }
+            { status: 400 },
           );
         data = await fetchAPI<TelegramUser>(`/telegramusers/${tgId}/`);
         break;
@@ -77,16 +77,16 @@ export async function POST(req: Request) {
         if (!tgId)
           return NextResponse.json(
             { error: "tgId is required" },
-            { status: 400 }
+            { status: 400 },
           );
         data = await fetchAPI<SubscriptionResponse>(
-          `/telegramusers/${tgId}/get_subscriptions`
+          `/telegramusers/${tgId}/get_subscriptions`,
         );
         break;
 
       case "fetchFixedPlans":
         data = await Promise.all(
-          fixedCostIds.map((id) => fetchAPI(`/costs/${id}/`))
+          fixedCostIds.map((id) => fetchAPI(`/costs/${id}/`)),
         );
         break;
 
@@ -94,15 +94,15 @@ export async function POST(req: Request) {
         if (!tgId)
           return NextResponse.json(
             { error: "tgId is required" },
-            { status: 400 }
+            { status: 400 },
           );
         const credentialsData = await fetchAPI<{ credentials: string[] }>(
-          `/telegramusers/${tgId}/get_credentials`
+          `/telegramusers/${tgId}/get_credentials`,
         );
         if (!credentialsData || !credentialsData.credentials.length) {
           return NextResponse.json(
             { error: "VPN-ключ не найден" },
-            { status: 404 }
+            { status: 404 },
           );
         }
         data = credentialsData;
@@ -112,21 +112,21 @@ export async function POST(req: Request) {
         if (!tgId)
           return NextResponse.json(
             { error: "tgId is required" },
-            { status: 400 }
+            { status: 400 },
           );
         data = await fetchAPI<TransactionResponse>(
-          `/telegramusers/${tgId}/get_transactions`
+          `/telegramusers/${tgId}/get_transactions`,
         );
         break;
-	
+
       case "fetchPaymentLinks":
         if (!tgId)
           return NextResponse.json(
             { error: "tgId is required" },
-            { status: 400 }
+            { status: 400 },
           );
-        data = await fetchAPI<{ links: string[]}>(
-          `/telegramusers/${tgId}/get_links`
+        data = await fetchAPI<{ links: string[] }>(
+          `/telegramusers/${tgId}/get_links`,
         );
         break;
 
@@ -134,13 +134,12 @@ export async function POST(req: Request) {
         return NextResponse.json({ error: "Invalid action" }, { status: 400 });
     }
 
-
     return NextResponse.json(data);
   } catch (error) {
     console.error("🚨 Ошибка обработки запроса:", error);
     return NextResponse.json(
       { error: "Internal Server Error" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

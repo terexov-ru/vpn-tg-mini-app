@@ -10,7 +10,7 @@ export default function Subscription() {
   let title = "Подписка";
   let description = "";
   let buttonText = "";
-  let paymentLink = "/payment"; 
+  let paymentLink = "/payment";
 
   switch (subscriptionStatus) {
     case "no_subscription":
@@ -20,7 +20,7 @@ export default function Subscription() {
     case "active":
       description = subscription?.date_billing_next
         ? `Истекает: ${new Date(
-            subscription.date_billing_next
+            subscription.date_billing_next,
           ).toLocaleDateString("ru-RU", {
             day: "numeric",
             month: "long",

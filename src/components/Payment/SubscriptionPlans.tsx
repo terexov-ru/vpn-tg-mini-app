@@ -64,8 +64,8 @@ export function SubscriptionPlans() {
                           alt="check-mark"
                           width={8}
                           height={8}
-                          loading="eager" 
-                          unoptimized={false} 
+                          loading="eager"
+                          unoptimized={false}
                         />
                       </div>
                       <span className="text-xs font-normal text-baseGray overflow-hidden truncate">
@@ -76,8 +76,11 @@ export function SubscriptionPlans() {
                 </ul>
               )}
             </div>
-            <button className="bg-accent rounded-[60px] text-xs/4 font-medium w-full py-2" onClick={() => router.push( paymentLinks?paymentLinks[i]:"" )}>
-              {paymentLinks?'Купить':"Загрузка..."}
+            <button
+              className="bg-accent rounded-[60px] text-xs/4 font-medium w-full py-2"
+              onClick={() => router.push(paymentLinks ? paymentLinks[i] : "")}
+            >
+              {paymentLinks ? "Купить" : "Загрузка..."}
             </button>
           </div>
         ))

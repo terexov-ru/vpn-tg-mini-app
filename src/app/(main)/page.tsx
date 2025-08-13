@@ -7,7 +7,7 @@ export default function HomePage() {
     <>
       <section className="flex flex-col gap-[140px] justify-between h-full">
         <div>
-          <Header text="Главная"  />
+          <Header text="Главная" />
           <MainInfo />
         </div>
         <BottomSection />

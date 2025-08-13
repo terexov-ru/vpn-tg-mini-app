@@ -33,7 +33,7 @@ export function TransactionHistory() {
                     <div>
                       <div className="font-medium text-[15px]/[18px]">
                         {new Date(
-                          transaction.date_transaction
+                          transaction.date_transaction,
                         ).toLocaleDateString("ru-RU")}
                       </div>
                       <div className="text-gray-400 font-normal text-[13px]/[18px]">

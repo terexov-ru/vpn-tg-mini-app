@@ -7,7 +7,7 @@ import { TransactionHistory } from "@/components/Payment/TransactionHistory";
 export default function Page() {
   return (
     <div>
-      <Header text="Оплата"/>
+      <Header text="Оплата" />
       <SubscriptionPlans />
       <TransactionHistory />
       <AutoPayment />

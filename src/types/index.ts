@@ -25,7 +25,7 @@ export type TelegramUser = {
 export type Subscription = {
   id: string;
   url: string;
-  subscription: string; 
+  subscription: string;
   subscription_id: string;
   user: string;
   user_id: number;
@@ -43,18 +43,17 @@ export type SubscriptionResponse = {
 };
 
 export type Transaction = {
-    id: string;
-    url: string;
-    amount: string;
-    date_transaction: string;
-    subscription: string; 
-    subscription_id: string;
-    user: string;
-    user_id: number;
-  };
-  
-  export type TransactionResponse = {
-    this: string;
-    transactions: Transaction[];
-  };
-  
+  id: string;
+  url: string;
+  amount: string;
+  date_transaction: string;
+  subscription: string;
+  subscription_id: string;
+  user: string;
+  user_id: number;
+};
+
+export type TransactionResponse = {
+  this: string;
+  transactions: Transaction[];
+};

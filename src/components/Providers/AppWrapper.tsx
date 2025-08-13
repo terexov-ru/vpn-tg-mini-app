@@ -32,7 +32,9 @@ function LoadingScreen() {
   const gradient = "bg-gradient-to-b from-[#291b4c] via-[#0D0E0F] to-[#0D0E0F]";
 
   return (
-    <div className={`flex items-center justify-center h-screen text-white ${gradient}`}>
+    <div
+      className={`flex items-center justify-center h-screen text-white ${gradient}`}
+    >
       <p>Загрузка...</p>
     </div>
   );

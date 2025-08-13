@@ -1,8 +1,15 @@
 import { create } from "zustand";
 
 import { TelegramUser } from "@/types";
-import { fetchCredentials, fetchFixedPlans, fetchSubscriptions, fetchTelegramUser, fetchTransactions, fetchPaymentLinks } from "@/api/api";
-import { retrieveRawInitData } from '@telegram-apps/sdk';
+import {
+  fetchCredentials,
+  fetchFixedPlans,
+  fetchSubscriptions,
+  fetchTelegramUser,
+  fetchTransactions,
+  fetchPaymentLinks,
+} from "@/api/api";
+import { retrieveRawInitData } from "@telegram-apps/sdk";
 
 type Subscription = {
   id: string;
@@ -61,12 +68,12 @@ export const useUserStore = create<UserState>((set, get) => ({
 
     try {
       // Get the initData from the SDK
-      const initDataRaw = retrieveRawInitData()
+      const initDataRaw = retrieveRawInitData();
 
       let userd = null;
       if (initDataRaw) {
         const urlParams = new URLSearchParams(initDataRaw);
-        userd = urlParams.get('user') || "";
+        userd = urlParams.get("user") || "";
         // Decode the initData
         const decodedData = decodeURIComponent(userd);
         userd = JSON.parse(decodedData);
@@ -88,7 +95,6 @@ export const useUserStore = create<UserState>((set, get) => ({
       }
 
       set({ subscription, subscriptionStatus, isLoading: false });
-
     } catch (error) {
       console.error("❌ Ошибка загрузки данных:", error);
       set({ isLoading: false, subscriptionStatus: "no_subscription" });
