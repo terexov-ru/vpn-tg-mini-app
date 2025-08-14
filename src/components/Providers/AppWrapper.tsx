@@ -1,13 +1,15 @@
 "use client";
 
 import { ReactNode, useEffect } from "react";
-import { useQuery } from "@tanstack/react-query";
-import { getDevToken, getMainInfo, getUserToken } from "@/api/api";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { getDevToken, getMainInfo, getPaymentInfo, getPlans } from "@/api/api";
 import { retrieveRawInitData } from "@telegram-apps/sdk";
 
 export function AppWrapper({ children }: { children: ReactNode }) {
   const initData =
     typeof window === "undefined" ? undefined : retrieveRawInitData();
+
+  const queryClient = useQueryClient();
 
   const { data: userToken } = useQuery({
     queryKey: ["userToken"],
@@ -19,13 +21,24 @@ export function AppWrapper({ children }: { children: ReactNode }) {
   useEffect(() => {
     if (!userToken?.token) return;
     localStorage.setItem("token", userToken.token);
+
+    fetchMain();
+
+    queryClient.prefetchQuery({
+      queryKey: ["plans"],
+      queryFn: getPlans,
+    });
+
+    queryClient.prefetchQuery({
+      queryKey: ["paymentInfo"],
+      queryFn: getPaymentInfo,
+    });
   }, [userToken?.token]);
 
-  const { status } = useQuery({
+  const { status, refetch: fetchMain } = useQuery({
     queryKey: ["main"],
     queryFn: () => getMainInfo(),
-    enabled: !!userToken?.token,
-    retry: (failureCount) => failureCount < 1,
+    enabled: false,
   });
 
   const isLoading = status === "pending";
