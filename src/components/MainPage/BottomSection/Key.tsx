@@ -2,9 +2,20 @@
 
 import { useUserStore } from "@/store/useUserStore";
 import { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { getMainInfo } from "@/api/api";
+
+const getSubscriptionStatus = (subscription?: { is_active: boolean }) => {
+  if (!subscription) return "no_subscription";
+  return subscription.is_active ? "active" : "expired";
+};
 
 export default function Key() {
-  const { credentials, subscriptionStatus } = useUserStore();
+  const { data: { subscription, key } = {}, isLoading } = useQuery({
+    queryKey: ["main"],
+    queryFn: () => getMainInfo(),
+  });
+  const subscriptionStatus = getSubscriptionStatus(subscription);
 
   let title = "VPN-ключ";
   let description = "";
@@ -20,11 +31,11 @@ export default function Key() {
       buttonText = "Продлить подписку";
       break;
     case "active":
-      if (!credentials || credentials.length === 0) {
+      if (isLoading) {
         description = "Загрузка ключа...";
         buttonText = "";
       } else {
-        description = credentials[0].uri;
+        description = key;
         buttonText = "Скопировать";
       }
       break;

@@ -11,7 +11,7 @@ export default function Page() {
       <SubscriptionPlans />
       <TransactionHistory />
       <AutoPayment />
-      <IncomeExpense />
+      {/*<IncomeExpense />*/}
     </div>
   );
 }

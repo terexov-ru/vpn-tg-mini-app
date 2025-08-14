@@ -2,9 +2,21 @@
 
 import { useUserStore } from "@/store/useUserStore";
 import { useRouter } from "next/navigation";
+import { useQuery } from "@tanstack/react-query";
+import { getMainInfo } from "@/api/api";
+
+const getSubscriptionStatus = (subscription?: { is_active: boolean }) => {
+  if (!subscription) return "no_subscription";
+  return subscription.is_active ? "active" : "expired";
+};
 
 export default function Subscription() {
-  const { subscription, subscriptionStatus } = useUserStore();
+  const { data: { subscription } = {} } = useQuery({
+    queryKey: ["main"],
+    queryFn: () => getMainInfo(),
+  });
+  const subscriptionStatus = getSubscriptionStatus(subscription);
+
   const router = useRouter();
 
   let title = "Подписка";
@@ -18,14 +30,15 @@ export default function Subscription() {
       buttonText = "Оформить подписку";
       break;
     case "active":
-      description = subscription?.date_billing_next
-        ? `Истекает: ${new Date(
-            subscription.date_billing_next,
-          ).toLocaleDateString("ru-RU", {
-            day: "numeric",
-            month: "long",
-            year: "numeric",
-          })}`
+      description = subscription?.expires_at
+        ? `Истекает: ${new Date(subscription.expires_at).toLocaleDateString(
+            "ru-RU",
+            {
+              day: "numeric",
+              month: "long",
+              year: "numeric",
+            },
+          )}`
         : "Подписка активна";
       buttonText = "Продлить";
       break;

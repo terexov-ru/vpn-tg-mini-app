@@ -1,29 +1,34 @@
 "use client";
 
-import { useEffect } from "react";
-import { useUserStore } from "@/store/useUserStore";
+import { ReactNode, useEffect } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { getDevToken, getMainInfo, getUserToken } from "@/api/api";
+import { retrieveRawInitData } from "@telegram-apps/sdk";
 
-export function AppWrapper({ children }: { children: React.ReactNode }) {
-  const {
-    fetchUserData,
-    fetchTransactions,
-    fetchCredentials,
-    fetchPlans,
-    fetchPaymentLinks,
-    isLoading,
-    subscriptionStatus,
-  } = useUserStore();
+export function AppWrapper({ children }: { children: ReactNode }) {
+  const initData =
+    typeof window === "undefined" ? undefined : retrieveRawInitData();
+
+  const { data: userToken } = useQuery({
+    queryKey: ["userToken"],
+    queryFn: () => getDevToken({ initData }),
+    enabled: !!initData,
+    staleTime: Infinity,
+  });
 
   useEffect(() => {
-    fetchUserData().then(() => {
-      if (subscriptionStatus === "active") {
-        fetchTransactions();
-        fetchCredentials();
-      }
-      fetchPlans();
-      fetchPaymentLinks();
-    });
-  }, [fetchUserData, fetchTransactions, subscriptionStatus]);
+    if (!userToken?.token) return;
+    localStorage.setItem("token", userToken.token);
+  }, [userToken?.token]);
+
+  const { status } = useQuery({
+    queryKey: ["main"],
+    queryFn: () => getMainInfo(),
+    enabled: !!userToken?.token,
+    retry: (failureCount) => failureCount < 1,
+  });
+
+  const isLoading = status === "pending";
 
   return <>{isLoading ? <LoadingScreen /> : children}</>;
 }

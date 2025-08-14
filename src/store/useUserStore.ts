@@ -8,7 +8,7 @@ import {
   fetchTelegramUser,
   fetchTransactions,
   fetchPaymentLinks,
-} from "@/api/api";
+} from "@/api/apiLegacy";
 import { retrieveRawInitData } from "@telegram-apps/sdk";
 
 type Subscription = {

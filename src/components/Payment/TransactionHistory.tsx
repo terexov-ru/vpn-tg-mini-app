@@ -2,9 +2,15 @@
 
 import { useUserTransactions } from "@/hooks/useUserTransactions";
 import Image from "next/image";
+import { useQuery } from "@tanstack/react-query";
+import { getPaymentInfo, getPlans } from "@/api/api";
 
 export function TransactionHistory() {
-  const { transactions, isLoading } = useUserTransactions();
+  const { data: { transactions = [] } = {}, isLoading } = useQuery({
+    queryKey: ["paymentInfo"],
+    queryFn: () => getPaymentInfo(),
+  });
+
   const isEmpty = transactions.length === 0;
 
   return (
@@ -26,18 +32,18 @@ export function TransactionHistory() {
         <div className="max-h-64 overflow-y-auto">
           <ul className="flex flex-col gap-[18px]">
             {transactions.slice(0, 4).map((transaction) => (
-              <li key={transaction.id}>
+              <li key={transaction.created_at}>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-[10px]">
                     <div className="w-[42px] h-[42px] rounded-full bg-[#DFE2E6]"></div>
                     <div>
                       <div className="font-medium text-[15px]/[18px]">
-                        {new Date(
-                          transaction.date_transaction,
-                        ).toLocaleDateString("ru-RU")}
+                        {new Date(transaction.created_at).toLocaleDateString(
+                          "ru-RU",
+                        )}
                       </div>
                       <div className="text-gray-400 font-normal text-[13px]/[18px]">
-                        {transaction.cancelled ? "Неупешно" : "Успешно"}
+                        {/*{transaction.cancelled ? "Неупешно" : "Успешно"}*/}
                       </div>
                     </div>
                   </div>
