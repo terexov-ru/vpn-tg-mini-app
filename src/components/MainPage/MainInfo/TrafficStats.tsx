@@ -54,7 +54,6 @@ export default function TrafficStats() {
           icon={stat.icon}
           value={stat.value}
           label={stat.label}
-          button={stat.button}
         />
       ))}
     </div>
