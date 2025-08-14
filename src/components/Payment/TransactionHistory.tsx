@@ -1,6 +1,5 @@
 "use client";
 
-import { useUserTransactions } from "@/hooks/useUserTransactions";
 import Image from "next/image";
 import { useQuery } from "@tanstack/react-query";
 import { getPaymentInfo, getPlans } from "@/api/api";

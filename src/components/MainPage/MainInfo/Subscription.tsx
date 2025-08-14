@@ -1,6 +1,5 @@
 "use client";
 
-import { useUserStore } from "@/store/useUserStore";
 import { useRouter } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
 import { getMainInfo } from "@/api/api";
