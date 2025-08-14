@@ -22,7 +22,7 @@ export function SubscriptionPlans() {
     isPending,
     variables: currentPlanPendingId,
   } = useMutation({
-    mutationKey: "paymentLink",
+    mutationKey: ["paymentLink"],
     mutationFn: (id: number) => getPlanPaymentLink({ planId: id }),
     onSuccess: (res) => {
       router.push(res.url);
