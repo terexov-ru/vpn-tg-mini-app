@@ -2,7 +2,7 @@
 
 import { ReactNode, useEffect } from "react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { getDevToken, getMainInfo, getPaymentInfo, getPlans } from "@/api/api";
+import { getMainInfo, getPaymentInfo, getPlans, getUserToken } from "@/api/api";
 import { retrieveRawInitData } from "@telegram-apps/sdk";
 
 export function AppWrapper({ children }: { children: ReactNode }) {
@@ -13,7 +13,7 @@ export function AppWrapper({ children }: { children: ReactNode }) {
 
   const { data: userToken } = useQuery({
     queryKey: ["userToken"],
-    queryFn: () => getDevToken({ initData }),
+    queryFn: () => getUserToken({ initData: initData as string }),
     enabled: !!initData,
     staleTime: Infinity,
   });
