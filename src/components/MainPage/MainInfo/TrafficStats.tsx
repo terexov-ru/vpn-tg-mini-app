@@ -2,15 +2,17 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { useUserStore } from "@/store/useUserStore";
 import { format } from "date-fns";
 import { ru } from "date-fns/locale";
-
-const BOT_BASE_URL =
-  process.env.NEXT_PUBLIC_BOT_URL || "https://t.me/RaxmonovVPN_bot";
+import { useQuery } from "@tanstack/react-query";
+import { getMainInfo } from "@/api/api";
 
 export default function TrafficStats() {
-  const { user } = useUserStore();
+  const { data: mainInfo, isLoading } = useQuery({
+    queryKey: ["main"],
+    queryFn: getMainInfo,
+  });
+
   const [userCount, setUserCount] = useState<number>(8317);
 
   useEffect(() => {
@@ -24,13 +26,9 @@ export default function TrafficStats() {
     setUserCount(newCount);
   }, []);
 
-  const referralLink = user?.refer
-    ? `${BOT_BASE_URL}?start=ref-${user.refer}`
-    : "";
-
-  const registrationDate = user?.date_assigned
-    ? format(new Date(user.date_assigned), "d MMMM yyyy", { locale: ru })
-    : "Загрузка...";
+  const registrationDate = mainInfo?.registered_at
+    ? format(new Date(mainInfo.registered_at), "d MMMM yyyy", { locale: ru })
+    : "Неизвестно";
 
   const stats = [
     { icon: "/time.svg", value: registrationDate, label: "Дата регистрации" },
@@ -39,11 +37,6 @@ export default function TrafficStats() {
       value: userCount.toLocaleString(),
       label: "Кол-во юзеров",
     },
-    // {
-    //   icon: "/invite.svg",
-    //   label: "Позвать друга",
-    //   button: referralLink && <CopyButton text={referralLink} />,
-    // },
   ];
 
   return (
@@ -54,7 +47,6 @@ export default function TrafficStats() {
           icon={stat.icon}
           value={stat.value}
           label={stat.label}
-          button={stat.button}
         />
       ))}
     </div>

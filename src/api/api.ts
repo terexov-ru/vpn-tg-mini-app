@@ -23,6 +23,7 @@ export const getDevToken = ({ initData }: InitDataParam) =>
 export const getMainInfo = () =>
   apiClient.get("main").json<{
     online: boolean;
+    registered_at: string;
     subscription?: {
       id: number;
       prod_id: number;
