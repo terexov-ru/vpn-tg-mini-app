@@ -1,6 +1,8 @@
 import { apiClient } from "@/api/apiClient";
 
-export const getUserToken = ({ initData }) =>
+type InitDataParam = { initData: string };
+
+export const getUserToken = ({ initData }: InitDataParam) =>
   apiClient
     .post("auth", {
       headers: {
@@ -9,7 +11,7 @@ export const getUserToken = ({ initData }) =>
     })
     .json<{ token: string }>();
 
-export const getDevToken = ({ initData }) =>
+export const getDevToken = ({ initData }: InitDataParam) =>
   apiClient
     .get("asdfn23r32/token", {
       headers: {
