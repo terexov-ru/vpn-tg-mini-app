@@ -16,7 +16,7 @@ export function TransactionHistory() {
   return (
     <section className="mb-4 mx-4 bg-[#171819] px-4 py-[18px] rounded-[20px] text-white">
       <div className="flex justify-between items-center mb-5">
-        <h2 className="text-xl/6 font-medium">История транзакций</h2>
+        <h2 className="text-xl/6 font-medium">Последние транзакции</h2>
         {/* <button className="text-sm/[18px] font-normal text-gray-400">
           Подробнее
         </button> */}

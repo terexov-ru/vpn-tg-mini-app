@@ -31,16 +31,14 @@ export default function Subscription() {
       break;
     case "active":
       description = subscription?.expires_at
-        ? `Истекает: ${new Date(subscription.expires_at).toLocaleDateString(
-            "ru-RU",
-            {
-              day: "numeric",
-              month: "long",
-              year: "numeric",
-            },
-          )}`
+        ? `Следующий платеж: ${new Date(
+            subscription.expires_at,
+          ).toLocaleDateString("ru-RU", {
+            day: "numeric",
+            month: "long",
+            year: "numeric",
+          })}`
         : "Подписка активна";
-      buttonText = "Продлить";
       break;
     case "expired":
       description = "Продли подписку, чтобы использовать VPN";

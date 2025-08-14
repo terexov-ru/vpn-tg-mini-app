@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Home, ShieldCheck, Info } from "lucide-react";
+import { Home, Info, CircleDollarSign } from "lucide-react";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
@@ -16,7 +16,7 @@ export default function Navigation() {
 
   const menuItems = [
     { href: "/", icon: Home, label: "Главная" },
-    { href: "/payment", icon: ShieldCheck, label: "Оплата" },
+    { href: "/payment", icon: CircleDollarSign, label: "Оплата" },
     { href: "/support", icon: Info, label: "Поддержка" },
   ];
   return (

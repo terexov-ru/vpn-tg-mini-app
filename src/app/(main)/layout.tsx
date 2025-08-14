@@ -27,7 +27,7 @@ export default function RootLayout({
           }}
         />
       )}
-      <div className="overflow-y-auto min-h-0 h h-[calc(100dvh-70px)]">
+      <div className="relative z-10 overflow-y-auto min-h-0 h h-[calc(100dvh-70px)]">
         {children}
       </div>
       <Navgation />

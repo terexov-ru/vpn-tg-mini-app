@@ -5,7 +5,7 @@ import { TicketSystem } from "@/components/Support/TicketSystem";
 export default function SupportPage() {
   return (
     <div className="text-white">
-      <Header text="Support" />
+      <Header text="Поддержка" />
       <FAQ />
       <TicketSystem />
     </div>

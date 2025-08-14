@@ -39,11 +39,11 @@ export default function TrafficStats() {
       value: userCount.toLocaleString(),
       label: "Кол-во юзеров",
     },
-    {
-      icon: "/invite.svg",
-      label: "Позвать друга",
-      button: referralLink && <CopyButton text={referralLink} />,
-    },
+    // {
+    //   icon: "/invite.svg",
+    //   label: "Позвать друга",
+    //   button: referralLink && <CopyButton text={referralLink} />,
+    // },
   ];
 
   return (
