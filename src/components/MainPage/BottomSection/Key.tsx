@@ -35,7 +35,7 @@ export default function Key() {
         description = "Загрузка ключа...";
         buttonText = "";
       } else {
-        description = key;
+        description = key ?? "";
         buttonText = "Скопировать";
       }
       break;
